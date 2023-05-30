@@ -1,5 +1,6 @@
 package com.example.mirutav2.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import com.example.mirutav2.R
 import com.example.mirutav2.home.route.RouteAdapter
 import com.example.mirutav2.home.route.RouteListener
 import com.example.mirutav2.home.route.RouteModel
+import com.example.mirutav2.map.MapActivity
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -164,7 +166,9 @@ class FavoriteFragment : Fragment(), RouteListener {
 
     //Click en el boton del mapa
     override fun onBtnMapClicked(routeModel: RouteModel) {
-        TODO("Not yet implemented")
+        val intent = Intent(this.context, MapActivity::class.java)
+        intent.putExtra("idRut", routeModel.idRut)
+        startActivity(intent)
     }
 
 }
