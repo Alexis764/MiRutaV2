@@ -8,8 +8,6 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
-
-
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="-0dp"
@@ -22,42 +20,34 @@
     </ImageView>
 
 
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
-        app:layout_constraintBottom_toTopOf="@+id/cvLogin"
-        android:text="@string/main_title"
-        android:textSize="60sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textAllCaps="true">
-    </TextView>
-
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        app:cardBackgroundColor="@color/background_cards"
-        app:cardCornerRadius="40dp">
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        app:cardBackgroundColor="@color/background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="30dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@drawable/shape_login_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_title"
+                android:textSize="60sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textAllCaps="true">
+            </TextView>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +59,7 @@
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
                 app:boxBackgroundColor="@color/accent"
+                android:layout_marginVertical="15dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +84,6 @@
                 app:boxStrokeColor="@color/black"
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
-                android:layout_marginTop="15dp"
                 app:boxBackgroundColor="@color/accent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -114,17 +104,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                app:backgroundTint="@color/black"
                 android:text="@string/main_login"
                 android:textSize="20sp"
                 android:textColor="@color/white"
+                android:backgroundTint="@color/black"
                 android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="25dp">
             </Button>
 
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
