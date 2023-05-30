@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/background_cards"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <FrameLayout
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:background="@color/background">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_start"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/content_img_start">
+            </ImageView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_destination"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="bottom"
+                android:contentDescription="@string/content_img_destination">
+            </ImageView>
+
+        </FrameLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvStartRoute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleSubtitle"
+                    tools:text="@string/startRoute"
+                    android:layout_gravity="center|start">
+                </TextView>
+
+                <ImageButton
+                    android:id="@+id/ibFavorite"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_favorite"
+                    android:backgroundTint="@color/background_cards"
+                    app:tint="@color/white"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/content_btnFavorite">
+                </ImageButton>
+
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvStartHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/text"
+                    tools:text="@string/hour"
+                    android:layout_marginEnd="10dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvEndHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/text"
+                    tools:text="@string/hour"
+                    android:layout_marginEnd="10dp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvSchedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/text"
+                    tools:text="@string/schedule">
+                </TextView>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginVertical="3dp"
+                android:background="@color/accent">
+            </View>
+
+
+            <FrameLayout
+                android:id="@+id/btnExtendStops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleSubtitle"
+                    android:text="@string/stop"
+                    android:layout_gravity="center|start">
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/ivRowStops"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:src="@drawable/ic_row_open"
+                    app:tint="@color/white"
+                    android:contentDescription="@string/content_row">
+                </ImageView>
+
+            </FrameLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStopsToRoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginVertical="3dp"
+                android:background="@color/accent">
+            </View>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDestinationRoute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/styleSubtitle"
+                    tools:text="@string/destinationRoute"
+                    android:layout_gravity="center|start">
+                </TextView>
+
+                <Button
+                    android:id="@+id/btnMap"
+                    android:layout_width="110dp"
+                    android:layout_height="50dp"
+                    android:text="@string/map"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/accent"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/content_btnMap">
+                </Button>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

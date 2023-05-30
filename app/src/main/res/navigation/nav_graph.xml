@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mirutav2.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_routeFragment"
+            app:destination="@id/routeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/routeFragment"
+        android:name="com.example.mirutav2.home.RouteFragment"
+        android:label="fragment_route"
+        tools:layout="@layout/fragment_route" >
+        <action
+            android:id="@+id/action_routeFragment_to_stopFragment"
+            app:destination="@id/stopFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/stopFragment"
+        android:name="com.example.mirutav2.home.StopFragment"
+        android:label="fragment_stop"
+        tools:layout="@layout/fragment_stop" >
+        <action
+            android:id="@+id/action_stopFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.mirutav2.home.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_adminFragment"
+            app:destination="@id/adminFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.example.mirutav2.home.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
+</navigation>

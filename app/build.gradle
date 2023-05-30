@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+}
+
+android {
+    namespace 'com.example.mirutav2'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.mirutav2"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    //Implementacion de splash screen
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+
+
+    //Implementacion de navegacion de fragmentos
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+
+
+    //Implementacion de manejo de imagenes
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+
+    //Implementacion volley de manejo de peticiones http
+    implementation 'com.android.volley:volley:1.2.1'
+
+
+    //Implementacion de shimmer para pantalla de carga
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
+    //Implementacion de google maps
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    
+    //Implementaciones predeterminadas
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

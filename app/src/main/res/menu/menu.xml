@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group
+    android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home">
+    </item>
+
+    <item
+        android:id="@+id/routeFragment"
+        android:icon="@drawable/ic_route"
+        android:title="@string/route">
+    </item>
+
+    <item
+        android:id="@+id/stopFragment"
+        android:icon="@drawable/ic_stop"
+        android:title="@string/stop">
+    </item>
+
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite">
+    </item>
+
+    <item
+        android:id="@+id/adminFragment"
+        android:icon="@drawable/ic_admin"
+        android:title="@string/admin">
+    </item>
+
+</group>
+
+</menu>

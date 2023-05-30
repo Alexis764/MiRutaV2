@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_circle"
+        android:contentDescription="@string/content_img_circle">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvStartRoute_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        tools:text="@string/startRoute"
+        android:theme="@style/text"
+        android:gravity="center">
+    </TextView>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_row_next"
+        android:contentDescription="@string/content_img_rorNext">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvDestinationRoute_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        tools:text="@string/destinationRoute"
+        android:theme="@style/text"
+        android:gravity="center">
+    </TextView>
+
+</LinearLayout>

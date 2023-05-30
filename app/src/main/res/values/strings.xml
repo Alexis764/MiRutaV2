@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">MiRuta</string>
+
+    <!--Main (Inicio de sesion)-->
+    <string name="main_title">Mi ruta</string>
+    <string name="main_email">Correo</string>
+    <string name="main_password">Contraseña</string>
+    <string name="main_login">Iniciar sesion</string>
+
+    <string name="content_main_logo">Logo</string>
+
+
+    <!--Home-->
+
+
+    <!--Menu-->
+    <string name="home">Inicio</string>
+    <string name="route">Rutas</string>
+    <string name="stop">Paradas</string>
+    <string name="favorite">Favoritos</string>
+    <string name="admin">Admin</string>
+
+
+    <!--Fragment route-->
+    <string name="searchRoute">Buscar ruta</string>
+    <string name="startRoute">Inicio ruta</string>
+    <string name="destinationRoute">Destino ruta</string>
+
+    <string name="content_row">Imagen flecha</string>
+
+    <!--Item route-->
+    <string name="map">Mapa</string>
+    <string name="hour">00:00:00</string>
+    <string name="schedule">L/M/X/J/V</string>
+
+    <string name="content_btnFavorite">Boton favorito</string>
+    <string name="content_btnMap">Boton mapa</string>
+    <string name="content_img_start">Imagen inicio</string>
+    <string name="content_img_destination">Imagen destino</string>
+
+    <!--Item route stops-->
+    <string name="content_img_circle">Imagen circulo</string>
+
+
+    <!--Fragment stop-->
+    <string name="searchNameStop">Nombre parada</string>
+
+    <!--Item stop-->
+    <string name="address">Direccion</string>
+
+    <string name="content_img_stop">Imagen de la parada</string>
+
+    <!--dialog stop-->
+    <string name="latitudeStop">Latitud</string>
+    <string name="longitudeStop">Longitud</string>
+    <string name="routesStopTitle">Rutas asignadas</string>
+
+    <string name="content_img_rorNext">Imagen flecha</string>
+
+</resources>
