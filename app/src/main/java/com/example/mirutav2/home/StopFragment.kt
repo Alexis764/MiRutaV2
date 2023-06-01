@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import com.example.mirutav2.home.stop.DialogStopActivity
 import com.example.mirutav2.home.stop.StopAdapter
 import com.example.mirutav2.home.stop.StopListener
@@ -102,7 +103,7 @@ class StopFragment : Fragment(), StopListener {
     }
 
     //Funcion metodo get para traer las paradas
-    private fun getStops(url: String = "http://192.168.20.23:8080/parada/listar"): StringRequest {
+    private fun getStops(url: String = "$URLBASE/parada/listar"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonArray = JSONArray(response)
 

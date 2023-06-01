@@ -28,6 +28,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import com.example.mirutav2.map.MapActivity
 
 import org.json.JSONArray
@@ -151,7 +152,7 @@ class RouteFragment : Fragment(), RouteListener {
     }
 
     //Funcion metodo get para traer los id de las rutas favoritas para el usuario
-    private fun getIdRoutesFavorites(url: String = "http://192.168.20.23:8080/ruta/listaId/alexis@gmail.com"): StringRequest {
+    private fun getIdRoutesFavorites(url: String = "$URLBASE/ruta/listaId/alexis@gmail.com"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonArray = JSONArray(response)
 
@@ -170,7 +171,7 @@ class RouteFragment : Fragment(), RouteListener {
     }
 
     //Funcion metodo get para traer las rutas
-    private fun getRoutes(url: String = "http://192.168.20.23:8080/ruta/listar"): StringRequest {
+    private fun getRoutes(url: String = "$URLBASE/ruta/listar"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             val jsonArray = JSONArray(response)
 
@@ -244,7 +245,7 @@ class RouteFragment : Fragment(), RouteListener {
     override fun onBtnFavoriteClicked(routeModel: RouteModel) {
         routeModel.isFavorite = !routeModel.isFavorite
 
-        val url = if (routeModel.isFavorite) "http://192.168.20.23:8080/ruta/agregarFav" else "http://192.168.20.23:8080/ruta/eliminarFav"
+        val url = if (routeModel.isFavorite) "$URLBASE/ruta/agregarFav" else "$URLBASE/ruta/eliminarFav"
 
         queue.add(changeRouteFavorite(routeModel.idRut, url))
     }

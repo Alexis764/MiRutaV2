@@ -10,6 +10,11 @@ import com.google.android.material.navigationrail.NavigationRailView
 
 class HomeActivity : AppCompatActivity() {
 
+    //Constantes
+    companion object {
+        const val URLBASE = "http://192.168.20.23:8080"
+    }
+
     //Variables
     private lateinit var navController: NavController
 

@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import com.example.mirutav2.home.route.RouteAdapter
 import com.example.mirutav2.home.route.RouteListener
 import com.example.mirutav2.home.route.RouteModel
@@ -68,7 +69,7 @@ class FavoriteFragment : Fragment(), RouteListener {
     //Funciones para traer las rutas desde la dase de datos y ponerlas en el recyclerview
     //Iniciar el recyclerview
     private fun initRvRoutesFavorite() {
-        val url = "http://192.168.20.23:8080/ruta/listarFav/alexis@gmail.com"
+        val url = "$URLBASE/ruta/listarFav/alexis@gmail.com"
         queue.add(getRoutes(url))
     }
 
@@ -127,7 +128,7 @@ class FavoriteFragment : Fragment(), RouteListener {
     override fun onBtnFavoriteClicked(routeModel: RouteModel) {
         routeModel.isFavorite = !routeModel.isFavorite
 
-        val url = if (routeModel.isFavorite) "http://192.168.20.23:8080/ruta/agregarFav" else "http://192.168.20.23:8080/ruta/eliminarFav"
+        val url = if (routeModel.isFavorite) "$URLBASE/ruta/agregarFav" else "$URLBASE/ruta/eliminarFav"
 
         queue.add(changeRouteFavorite(routeModel.idRut, url))
     }

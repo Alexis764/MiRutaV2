@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import com.example.mirutav2.home.stop.StopModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -25,10 +27,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var queue: RequestQueue
 
 
-
     //Variables para paradas
     private var stopList = ArrayList<StopModel>()
     private var markerList = mutableListOf<Marker>()
+
+    //Variables para giros
+    private var twistsList = ArrayList<TwistsModel>()
 
 
 
@@ -83,12 +87,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         queue.add(getStopsRoute())
+        queue.add(getTwistsRoute())
     }
 
 
 
-    //Funcion para crear los marcadores con las paradas
-    private fun getStopsRoute(url: String = "http://192.168.20.23:8080/parada/listarRut/$idRut"): StringRequest {
+    //Funciones para crear los marcadores con las paradas
+    //Funcion que trae la informacion de las paradas
+    private fun getStopsRoute(url: String = "$URLBASE/parada/listarRut/$idRut"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             val jsonArray = JSONArray(response)
 
@@ -134,5 +140,56 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val marker = map.addMarker(MarkerOptions().position(coordinates).title(it.nombrePar))
             if (marker != null) markerList.add(marker)
         }
+    }
+
+
+
+    //Funciones para crear la ruta con los giros de las ruta
+    //Funcion que trae la informacion de los giros
+    private fun getTwistsRoute(url: String = "$URLBASE/giro/listarRut/$idRut"): StringRequest {
+        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
+            val jsonArray = JSONArray(response)
+
+            var i = 0
+            val sizeArray = jsonArray.length()
+            while (i < sizeArray) {
+                twistsList.add(createTwist(jsonArray[i] as JSONObject))
+                i++
+            }
+
+            createPolyline(twistsList)
+
+        }, {error ->
+            Log.e("Volley_getStops_map", error.toString())
+        })
+
+        return stringRequest
+    }
+
+    //Funcion para crear un giro
+    private fun createTwist(jsonTwists: JSONObject): TwistsModel {
+        val idGir = jsonTwists.getLong("idGir")
+        val latitudGir = jsonTwists.getDouble("latitudGir")
+        val longitudGir = jsonTwists.getDouble("longitudGir")
+        val ordenGirHasRut = jsonTwists.getLong("ordenGirHasRut")
+
+        return TwistsModel(
+            idGir,
+            latitudGir,
+            longitudGir,
+            ordenGirHasRut
+        )
+    }
+
+    //Funcion para crear la polilinea respecto a los giros
+    private fun createPolyline(twistsList: ArrayList<TwistsModel>) {
+        val twistsListOrdered = twistsList.sortedBy { it.ordenGirHasRut }
+        val latLngTwists = ArrayList<LatLng>()
+
+        twistsListOrdered.forEach {
+            latLngTwists.add(LatLng(it.latitudGir, it.longitudGir))
+        }
+
+        map.addPolyline(PolylineOptions().addAll(latLngTwists))
     }
 }

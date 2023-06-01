@@ -15,6 +15,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import org.json.JSONArray
 
 class RouteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -58,7 +59,7 @@ class RouteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         )
 
 
-        val url = "http://192.168.20.23:8080/parada/listarNombreRut/${route.idRut}"
+        val url = "$URLBASE/parada/listarNombreRut/${route.idRut}"
         val queue = Volley.newRequestQueue(tvStartRoute.context)
         queue.add(getStopNameToRoute(url))
         rvStopsToRoute.visibility = if (route.isOpenStop) View.VISIBLE else View.GONE

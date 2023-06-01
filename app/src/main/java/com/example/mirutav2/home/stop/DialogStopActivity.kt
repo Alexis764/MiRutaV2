@@ -13,6 +13,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import com.example.mirutav2.home.StopFragment.Companion.DIRECCIONPAR
 import com.example.mirutav2.home.StopFragment.Companion.IDPAR
 import com.example.mirutav2.home.StopFragment.Companion.IMGPAR
@@ -120,7 +121,7 @@ class DialogStopActivity : AppCompatActivity() {
     //Funciones para traer las rutas desde la dase de datos y ponerlas en el recyclerview
     //Funcion para traer las rutas respecto a la parada(idPar)
     private fun initRvRoutesToStop_dialog(idPar: Long) {
-        val url = "http://192.168.20.23:8080/ruta/listarPar/$idPar"
+        val url = "$URLBASE/ruta/listarPar/$idPar"
         queue.add(getStopNameToRoute(url))
     }
 
