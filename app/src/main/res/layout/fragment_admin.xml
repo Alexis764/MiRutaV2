@@ -1,14 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.AdminFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="admin" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/TextVtitleAdmin"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            android:text="ADMINISTRACION"
+            android:fontFamily="@font/tiltneon"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:drawableBottom="@drawable/ic_logoadmin"
+            android:background="@drawable/border_basic1"
+            />
+
+
+        <TextView
+            android:id="@+id/titleRoute"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/TextVtitleAdmin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.02"
+            android:text="Rutas"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/tiltneon"
+            android:background="@drawable/border_transparent"/>
+
+        <Button
+            android:id="@+id/btnAddRoute"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_admin"
+            android:drawableTop="@drawable/ic_add"
+            android:text="Agregar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleRoute"
+            app:layout_constraintVertical_bias="0.01" />
+
+        <Button
+            android:id="@+id/btnDeleteRoute"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddRoute"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Eliminar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_delete"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnUpdateRoute"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDeleteRoute"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Actualizar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_update"
+            android:background="@drawable/btn_admin"/>
+
+        <TextView
+            android:id="@+id/titleStop"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btnUpdateRoute"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Paradas"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/tiltneon"
+            android:background="@drawable/border_transparent"/>
+
+        <Button
+            android:id="@+id/btnAddStop"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleStop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Agregar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_add"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnDeleteStop"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddStop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Eliminar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_delete"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnUpdateStop"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDeleteStop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Actualizar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_update"
+            android:background="@drawable/btn_admin"/>
+
+        <TextView
+            android:id="@+id/titleUser"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btnUpdateStop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Usuario"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/tiltneon"
+            android:background="@drawable/border_transparent"
+            />
+
+        <Button
+            android:id="@+id/btnAddUser"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Agregar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_add"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnDeleteUser"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Eliminar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_delete"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnUpdateUser"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDeleteUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Actualizar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_update"
+            android:background="@drawable/btn_admin"/>
+
+        <TextView
+            android:id="@+id/titleBus"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btnUpdateUser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Bus"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:fontFamily="@font/tiltneon"
+            android:background="@drawable/border_transparent"/>
+
+        <Button
+            android:id="@+id/btnAddBus"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleBus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Agregar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_add"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnDeleteBus"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddBus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Eliminar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_delete"
+            android:background="@drawable/btn_admin"/>
+
+        <Button
+            android:id="@+id/btnUpdateBus"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDeleteBus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Actualizar"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_update"
+            android:background="@drawable/btn_admin"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
