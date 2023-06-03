@@ -8,7 +8,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.stop.StopModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

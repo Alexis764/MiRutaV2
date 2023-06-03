@@ -13,7 +13,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.mirutav2.R
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.StopFragment.Companion.DIRECCIONPAR
 import com.example.mirutav2.home.StopFragment.Companion.IDPAR
 import com.example.mirutav2.home.StopFragment.Companion.IMGPAR

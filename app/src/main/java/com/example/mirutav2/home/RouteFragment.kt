@@ -28,7 +28,8 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
+import com.example.mirutav2.MainActivity.Companion.URLBASE
+import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.map.MapActivity
 
 import org.json.JSONArray
@@ -152,7 +153,7 @@ class RouteFragment : Fragment(), RouteListener {
     }
 
     //Funcion metodo get para traer los id de las rutas favoritas para el usuario
-    private fun getIdRoutesFavorites(url: String = "$URLBASE/ruta/listaId/alexis@gmail.com"): StringRequest {
+    private fun getIdRoutesFavorites(url: String = "$URLBASE/ruta/listaId/${userModel.correoUsu}"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonArray = JSONArray(response)
 
@@ -255,7 +256,7 @@ class RouteFragment : Fragment(), RouteListener {
         val parameters = JSONObject()
 
         try {
-            parameters.put("correoUsu", "alexis@gmail.com")
+            parameters.put("correoUsu", userModel.correoUsu)
             parameters.put("idRut", idRut)
 
         } catch (e: JSONException) {
