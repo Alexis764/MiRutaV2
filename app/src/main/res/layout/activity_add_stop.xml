@@ -6,4 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".home.admin.stop.AddStopActivity">
 
+    <ImageButton
+        android:id="@+id/btnCloseStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/TitleStopData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/Theme.MiRutaV2.titulosAdmin"
+        android:text="AGREGAR DATOS DE PARADAS"
+        app:layout_constraintVertical_bias="0.1"/>
+
+
+    <EditText
+        android:id="@+id/AddDataNameStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el nombre de la parada"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleStopData"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/AddDataAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese la direccion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataNameStop"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/AddDataLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese la longitud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataAddress"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/AddDataLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese la latitud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataLength"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/AddDataImgStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese en url la imagen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataLatitude"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataImgStop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ENVIAR"
+        android:theme="@style/Theme.MiRutaV2.botones"
+        android:id="@+id/btnSendStopData"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

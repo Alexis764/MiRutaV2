@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.android.volley.Request
@@ -26,7 +27,7 @@ class AddUserActivity : AppCompatActivity() {
     private lateinit var AddDataRol : EditText
 
     // Variable Botones
-    private lateinit var btnCloseUser : Button
+    private lateinit var btnCloseUser : ImageButton
     private lateinit var btnSendUserData : Button
 
 
@@ -37,7 +38,7 @@ class AddUserActivity : AppCompatActivity() {
 
         initData()
         backAdmin()
-        //sendData()
+        sendData()
 
     }
 
@@ -49,26 +50,30 @@ class AddUserActivity : AppCompatActivity() {
         AddDataName = findViewById(R.id.AddDataName)
         AddDataPhoto = findViewById(R.id.AddDataPhoto)
         AddDataRol = findViewById(R.id.AddDataRol)
+
+        // Botones
+
+        btnSendUserData = findViewById(R.id.btnSendUserData)
+        btnCloseUser = findViewById(R.id.btnCloseUser)
     }
 
     // Navegacion de vuelta a Admin
 
     private fun backAdmin() {
         btnCloseUser.setOnClickListener {
-
+            onBackPressed()
         }
     }
 
-    private fun onBackPressed(adminFragment: Any) {
-
-    }
 
     // Enviar/Añadir datos a BD
 
-    /*private fun sendData() {
-        val url = URLBASE+"/AgregarUsuario"
+    private fun sendData() {
+        btnSendUserData.setOnClickListener {
+        val url = URLBASE+"/Usuario/AgregarUsuario"
         val queue = Volley.newRequestQueue(this)
         queue.add(AddUser(url))
+        }
     }
 
     // Funcion agregar Usuario
@@ -88,14 +93,14 @@ class AddUserActivity : AppCompatActivity() {
         }
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parametros, { response ->
-            Toast.makeText(requireContext(), response.getString("respuesta"), Toast.LENGTH_SHORT).show()
+            Toast.makeText(AddDataEmail.context, response.getString("respuesta"), Toast.LENGTH_SHORT).show()
 
         }, { error ->
             Log.e("AddUser", error.toString())
         })
 
         return jsonObjectRequest
-    }*/
+    }
 
 
 }

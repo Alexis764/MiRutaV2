@@ -6,4 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".home.admin.user.UpdateUserActivity">
 
+    <ImageButton
+        android:id="@+id/btnCloseUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/TitleUserData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/Theme.MiRutaV2.titulosAdmin"
+        android:text="ACTUALIZAR DATOS DE USUARIO"
+        app:layout_constraintVertical_bias="0.1"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/TitleUserData"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdateDataEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        android:text="Correo Usuario a actualizar: "
+        android:theme="@style/Theme.MiRutaV2.Textos"/>
+
+    <EditText
+        android:id="@+id/UpdateDataEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el correo "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleUserData"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataEmail"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdateDataPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        android:text="Datos a actualizar: "
+        android:theme="@style/Theme.MiRutaV2.Textos"/>
+
+    <EditText
+        android:id="@+id/UpdateDataPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese la contraseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataEmail"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/UpdateDataName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataPassword"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/UpdateDataPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese la foto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataName"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
+        android:id="@+id/UpdateDataRol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el rol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataPhoto"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDataRol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="ACTUALIZAR"
+        android:theme="@style/Theme.MiRutaV2.botones"
+        android:id="@+id/btnUpdateUserData"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
