@@ -77,6 +77,7 @@ class HomeActivity : AppCompatActivity() {
             val jsonObject = JSONObject(response)
 
             createUser(jsonObject)
+            setMenuAdminVisibility(jsonObject.getInt("tipoUsuario"))
 
         }, {error ->
             Log.e("Volley_getUser", error.toString())
@@ -85,6 +86,7 @@ class HomeActivity : AppCompatActivity() {
         return stringRequest
     }
 
+    //Funcion para crear un usuario con una data class
     private fun createUser(jsonObject: JSONObject) {
         val idUsu = jsonObject.getLong("idUsu")
         val correoUsu = jsonObject.getString("correoUsu")
@@ -94,6 +96,11 @@ class HomeActivity : AppCompatActivity() {
         val tipoUsuario = jsonObject.getInt("tipoUsuario")
 
         userModel = UserModel(idUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
+    }
+
+    //Funcion para cambiar la visibilidad de la opcion de administrador en el menu de navegacion
+    private fun setMenuAdminVisibility(typeUser: Int) {
+        if (typeUser == 1) nrvHome.menu.getItem(4).isVisible = false
     }
 
 }
