@@ -1,8 +1,14 @@
 package com.example.mirutav2.map
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -10,6 +16,7 @@ import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.stop.StopModel
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -21,6 +28,11 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    companion object {
+        const val REQUEST_CODE_LOCATION = 0
+    }
+
 
     //Variables
     private var idRut: Long = 0
@@ -88,6 +100,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         map = googleMap
         queue.add(getStopsRoute())
         queue.add(getTwistsRoute())
+        enableLocation()
     }
 
 
@@ -192,4 +205,95 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         map.addPolyline(PolylineOptions().addAll(latLngTwists))
     }
+
+
+
+    //Funciones para manejo del permiso de ubicacion
+    //Funcion para verficar si el metodo esta aceptado o no
+    private fun isLocationPermissionGranted(): Boolean {
+        return !(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+    }
+
+    //Funcion para solicitar permiso de ubicacion
+    @SuppressLint("MissingPermission")
+    private fun enableLocation() {
+        if (!::map.isInitialized) return
+        if (isLocationPermissionGranted()) {
+            map.isMyLocationEnabled = true
+            goCurrentLocation()
+
+        } else {
+            requestLocationPermission()
+        }
+    }
+
+    //Funcion para pedir permiso de ubicacion
+    private fun requestLocationPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION) ||
+            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+            Toast.makeText(this, "Debes aceptar los permisos desde ajustes", Toast.LENGTH_SHORT).show()
+
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                REQUEST_CODE_LOCATION
+            )
+        }
+    }
+
+    //Funcion para controlar la respuesta del usuario respecto a los permisos solicitados
+    @SuppressLint("MissingPermission", "MissingSuperCall")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_CODE_LOCATION -> if (
+                grantResults.isNotEmpty() &&
+                (grantResults[0] == PackageManager.PERMISSION_GRANTED || grantResults[1] == PackageManager.PERMISSION_GRANTED)
+            ) {
+                map.isMyLocationEnabled = true
+                goCurrentLocation()
+
+            } else {
+                Toast.makeText(this, "Para activar localizacion acepta los permisos desde ajustes", Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
+    }
+
+    //Funcion para controlar cambios en los permisos de localizacion
+    @SuppressLint("MissingPermission")
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        if (!::map.isInitialized) return
+        if (!isLocationPermissionGranted()) {
+            map.isMyLocationEnabled = false
+            Toast.makeText(this, "Para activar localizacion acepta los permisos desde ajustes", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    //Funcion para ir a la ubicacion actual del usuario automaticamente
+    @SuppressLint("MissingPermission")
+    private fun goCurrentLocation() {
+        val locationResult = getSystemService(android.content.Context.LOCATION_SERVICE) as LocationManager
+        val lastLocation = locationResult.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+        if (lastLocation != null) {
+            val coordinates =LatLng(lastLocation.latitude, lastLocation.longitude)
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(coordinates, 14f),
+                4000,
+                null
+            )
+        }
+    }
+
+
+
 }
