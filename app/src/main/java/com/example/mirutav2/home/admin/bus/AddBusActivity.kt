@@ -57,7 +57,7 @@ class AddBusActivity : AppCompatActivity() {
     // Enviar datos a BD
     private fun sendData() {
         btnSendBusData.setOnClickListener {
-            val url = URLBASE +"/Bus/AgregarBus"
+            val url = URLBASE +"/bus/agregar"
             val queue = Volley.newRequestQueue(this)
             queue.add(AddBus(url))
         }

@@ -62,7 +62,7 @@ class AddStopActivity : AppCompatActivity() {
 
     private fun sendData() {
         btnSendStopData.setOnClickListener {
-            val url = URLBASE+"/Parada/AgregarParada"
+            val url = URLBASE+"/parada/agregar"
             val queue = Volley.newRequestQueue(this)
             queue.add(AddStop(url))
         }

@@ -1,9 +1,13 @@
 package com.example.mirutav2
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.mirutav2.home.HomeActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -15,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var iedPassword: TextInputEditText
     private lateinit var btnLogin: Button
 
+    // Variable para Tema
+    private lateinit var sp : SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -23,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         initComponent()
         initListeners()
+        setDayNight(this)
 
     }
 
@@ -47,4 +55,20 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
+
+
+    // Tema Claro/Oscuro
+    companion object{
+        fun setDayNight(context: Context) {
+            val sp = context.getSharedPreferences("SP", Context.MODE_PRIVATE)
+            val theme = sp.getInt("Theme", 1)
+
+            if (theme == 0) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }
+
 }

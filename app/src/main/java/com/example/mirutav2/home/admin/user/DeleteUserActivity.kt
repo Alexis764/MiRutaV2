@@ -31,7 +31,7 @@ class DeleteUserActivity : AppCompatActivity() {
     // Variables
     private lateinit var DeleteDataEmail : EditText
 
-    // Variable Boton
+    // Variables Botones
     private lateinit var btnDeleteUserData : Button
     private lateinit var btnCloseUser : ImageButton
 
@@ -45,10 +45,10 @@ class DeleteUserActivity : AppCompatActivity() {
     }
 
 
-    // Elimina el dato
+    // Eliminar el dato
     private fun deleteData() {
         btnDeleteUserData.setOnClickListener {
-            val url = URLBASE +"/Usuario/EliminarUsuario/"+ DeleteDataEmail.text.toString()
+            val url = URLBASE +"/usuario/eliminar/"+ DeleteDataEmail.text.toString()
             val queue = Volley.newRequestQueue(this)
             queue.add(deleteUser(url))
         }

@@ -30,10 +30,10 @@
 
 
     <EditText
-        android:id="@+id/DeleteDataNameStop"
+        android:id="@+id/DeleteDataidParStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese el nombre de la parada"
+        android:hint="Ingrese la ID de la parada"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/DeleteDataNameStop"
+        app:layout_constraintTop_toBottomOf="@+id/DeleteDataidParStop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

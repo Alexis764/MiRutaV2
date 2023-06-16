@@ -62,7 +62,7 @@ class AddRouteActivity : AppCompatActivity() {
     // Enviar los datos a la BD
     private fun sendData() {
         btnSendRouteData.setOnClickListener {
-            val url = URLBASE + "/Ruta/AgregarRuta"
+            val url = URLBASE + "/ruta/agregar"
             val queue = Volley.newRequestQueue(this)
             queue.add(AddRoute(url))
         }

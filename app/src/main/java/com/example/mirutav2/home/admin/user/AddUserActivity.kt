@@ -70,7 +70,7 @@ class AddUserActivity : AppCompatActivity() {
 
     private fun sendData() {
         btnSendUserData.setOnClickListener {
-        val url = URLBASE+"/Usuario/AgregarUsuario"
+        val url = URLBASE+"/usuario/agregar"
         val queue = Volley.newRequestQueue(this)
         queue.add(AddUser(url))
         }
