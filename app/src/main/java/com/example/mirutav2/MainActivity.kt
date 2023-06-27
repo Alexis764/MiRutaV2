@@ -1,5 +1,6 @@
 package com.example.mirutav2
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,14 +8,26 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.home.HomeActivity
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_credentials")
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +35,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val URLBASE = "http://192.168.20.23:8080"
         const val IDUSU = "idUsu"
+
+        const val EMAILCREDENTIAL = "emailCredential"
+        const val PASSWORDCREDENTIAL = "passwordCredential"
     }
 
 
@@ -44,9 +60,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         splashScreen.setKeepOnScreenCondition{false}
 
+        initCredentials()
         initComponent()
         initListeners()
 
+    }
+
+
+
+    //Funcion que comprobaria las user_credentials para iniciar sesion automaticamente
+    private fun initCredentials() {
+        CoroutineScope(Dispatchers.IO).launch {
+            getCredentials().collect{userCredentialModel ->
+                if (userCredentialModel != null) {
+                    if (userCredentialModel.email.isNotEmpty() && userCredentialModel.password.isNotEmpty()) {
+                        queue.add(loginUser(userCredentialModel.email, userCredentialModel.password))
+                    }
+                }
+            }
+        }
     }
 
 
@@ -93,6 +125,10 @@ class MainActivity : AppCompatActivity() {
         }
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parameters, {response ->
             if (response.getBoolean("acceso")) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    saveCredentials(EMAILCREDENTIAL, email)
+                    saveCredentials(PASSWORDCREDENTIAL, password)
+                }
                 startHome(response.getLong("idUsu"))
 
             } else {
@@ -106,11 +142,30 @@ class MainActivity : AppCompatActivity() {
         return jsonObjectRequest
     }
 
-
     //Iniciar la siguiente actividad
     private fun startHome(idUsu: Long) {
         val intent = Intent(this, HomeActivity::class.java)
         intent.putExtra(IDUSU, idUsu)
         startActivity(intent)
+    }
+
+
+
+    //Funciones para manejar los datos de user_credentials con datastore preference
+    //Funcion para guardar el email y password
+    private suspend fun saveCredentials(key: String, value: String) {
+        dataStore.edit {
+            it[stringPreferencesKey(key)] = value
+        }
+    }
+
+    //Funcion para retornar los datos guardador
+    private fun getCredentials(): Flow<UserCredentialModel?> {
+        return dataStore.data.map {
+            UserCredentialModel(
+                email = it[stringPreferencesKey(EMAILCREDENTIAL)].orEmpty(),
+                password = it[stringPreferencesKey(PASSWORDCREDENTIAL)].orEmpty()
+            )
+        }
     }
 }

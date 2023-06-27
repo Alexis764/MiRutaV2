@@ -58,9 +58,8 @@
                 app:boxStrokeColor="@color/black"
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
-                app:boxBackgroundColor="@color/accent"
-                android:layout_marginVertical="15dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:boxBackgroundColor="@color/background_cards"
+                android:layout_marginVertical="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/iedEmail"
@@ -84,8 +83,7 @@
                 app:boxStrokeColor="@color/black"
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
-                app:boxBackgroundColor="@color/accent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:boxBackgroundColor="@color/background_cards">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/iedPassword"
@@ -106,8 +104,8 @@
                 android:padding="10dp"
                 android:text="@string/main_login"
                 android:textSize="20sp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/black"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/accent"
                 android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="25dp">
             </Button>

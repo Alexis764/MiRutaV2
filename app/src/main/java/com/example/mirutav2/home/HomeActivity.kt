@@ -13,9 +13,7 @@ import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.IDUSU
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
-import com.example.mirutav2.home.route.RouteModel
 import com.google.android.material.navigationrail.NavigationRailView
-import org.json.JSONArray
 import org.json.JSONObject
 
 class HomeActivity : AppCompatActivity() {
@@ -30,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
     //Variables
     private lateinit var navController: NavController
     private lateinit var queue: RequestQueue
-    private var idUsu: Long = 0
+    private var identificacionUsu: Long = 0
 
 
 
@@ -43,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        idUsu = intent.extras?.getLong(IDUSU) ?: 0
+        identificacionUsu = intent.extras?.getLong(IDUSU) ?: 0
 
         initComponent()
         initController()
@@ -72,12 +70,11 @@ class HomeActivity : AppCompatActivity() {
 
 
     //Funciones para traer la informacion del usuario
-    private fun getUser(url: String = "$URLBASE/usuario/buscar/$idUsu"): StringRequest {
+    private fun getUser(url: String = "$URLBASE/usuario/buscar/$identificacionUsu"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonObject = JSONObject(response)
 
             createUser(jsonObject)
-            setMenuAdminVisibility(jsonObject.getInt("tipoUsuario"))
 
         }, {error ->
             Log.e("Volley_getUser", error.toString())
@@ -88,19 +85,33 @@ class HomeActivity : AppCompatActivity() {
 
     //Funcion para crear un usuario con una data class
     private fun createUser(jsonObject: JSONObject) {
-        val idUsu = jsonObject.getLong("idUsu")
+        val identificacionUsu = jsonObject.getLong("identificacionUsu")
         val correoUsu = jsonObject.getString("correoUsu")
         val contraseniaUsu = jsonObject.getString("contraseniaUsu")
         val nombreUsu = jsonObject.getString("nombreUsu")
         val fotoUsu = jsonObject.getString("fotoUsu")
         val tipoUsuario = jsonObject.getInt("tipoUsuario")
 
-        userModel = UserModel(idUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
+        userModel = UserModel(identificacionUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
+        setMenuVisibility(userModel.tipoUsuario)
     }
 
     //Funcion para cambiar la visibilidad de la opcion de administrador en el menu de navegacion
-    private fun setMenuAdminVisibility(typeUser: Int) {
-        if (typeUser == 1) nrvHome.menu.getItem(4).isVisible = false
+    private fun setMenuVisibility(typeUser: Int) {
+        when (typeUser) {
+            1 -> { //User
+                nrvHome.menu.getItem(4).isVisible = false
+                nrvHome.menu.getItem(5).isVisible = false
+
+            }
+            2 -> { //Driver
+                nrvHome.menu.getItem(4).isVisible = false
+
+            }
+            0 -> { //Admin
+                nrvHome.menu.getItem(5).isVisible = false
+            }
+        }
     }
 
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
@@ -43,10 +44,14 @@ class RouteFragment : Fragment(), RouteListener {
 
     private lateinit var queue : RequestQueue
 
+    companion object {
+        const val IDRUT = "idRut"
+    }
+
 
 
     //Variables para componentes
-    private lateinit var cvSearch: CardView
+    private lateinit var cvSearch: LinearLayout
     private lateinit var iedStarRoute: TextInputEditText
     private lateinit var iedDestinationRoute: TextInputEditText
     private lateinit var cvOpenSearch: CardView
@@ -286,7 +291,7 @@ class RouteFragment : Fragment(), RouteListener {
     //Click en el boton del mapa
     override fun onBtnMapClicked(routeModel: RouteModel) {
         val intent = Intent(this.context, MapActivity::class.java)
-        intent.putExtra("idRut", routeModel.idRut)
+        intent.putExtra(IDRUT, routeModel.idRut)
         startActivity(intent)
     }
 

@@ -19,6 +19,7 @@
     <string name="stop">Paradas</string>
     <string name="favorite">Favoritos</string>
     <string name="admin">Admin</string>
+    <string name="bus">Bus</string>
 
 
     <!--Fragment route-->
@@ -56,5 +57,13 @@
     <string name="routesStopTitle">Rutas asignadas</string>
 
     <string name="content_img_rorNext">Imagen flecha</string>
+
+
+    <!--Fragment bus-->
+    <string name="plateBus">Placa bus: %s</string>
+    <string name="idUsu">Conductor: %s</string>
+
+    <!--Item route - bus-->
+    <string name="initRoute">Iniciar ruta</string>
 
 </resources>

@@ -8,4 +8,9 @@
         android:topRightRadius="24dp">
     </corners>
 
+    <stroke
+        android:color="@color/accent"
+        android:width="5dp">
+    </stroke>
+
 </shape>

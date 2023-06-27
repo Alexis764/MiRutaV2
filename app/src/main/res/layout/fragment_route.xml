@@ -45,70 +45,66 @@
 
 
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/cvSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/shape_search_background">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="20dp"
-            android:background="@drawable/shape_search_background">
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_start"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/black"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards"
+            android:layout_marginBottom="15dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedStarRoute"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_start"
-                app:startIconTint="@color/white"
-                app:boxStrokeColor="@color/white"
-                android:textColorHint="@color/white"
-                app:hintTextColor="@color/white"
-                app:boxBackgroundColor="@color/accent"
-                android:layout_marginBottom="15dp">
+                android:layout_height="match_parent"
+                android:hint="@string/startRoute"
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:imeOptions="actionDone">
+            </com.google.android.material.textfield.TextInputEditText>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/iedStarRoute"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/startRoute"
-                    android:textColor="@color/white"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:imeOptions="actionDone">
-                </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_destination"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/black"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedDestinationRoute"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/ic_destination"
-                app:startIconTint="@color/white"
-                app:boxStrokeColor="@color/white"
-                android:textColorHint="@color/white"
-                app:hintTextColor="@color/white"
-                app:boxBackgroundColor="@color/accent">
+                android:layout_height="match_parent"
+                android:hint="@string/destinationRoute"
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:imeOptions="actionDone">
+            </com.google.android.material.textfield.TextInputEditText>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/iedDestinationRoute"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/destinationRoute"
-                    android:textColor="@color/white"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:imeOptions="actionDone">
-                </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
 
