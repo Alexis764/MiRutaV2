@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.concurrent.thread
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_credentials")
 
@@ -75,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Thread.sleep(2000)
         splashScreen.setKeepOnScreenCondition{false}
 
         initCredentials()
@@ -168,6 +170,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     //Funciones para manejar los datos de user_credentials con datastore preference
     //Funcion para guardar el email y password
     private suspend fun saveCredentials(key: String, value: String) {
@@ -176,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Funcion para retornar los datos guardador
+    //Funcion para retornar los datos guardados
     private fun getCredentials(): Flow<UserCredentialModel?> {
         return dataStore.data.map {
             UserCredentialModel(
@@ -185,5 +188,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
+
 
 }

@@ -77,9 +77,9 @@
 
     <!--  SplashScreen  -->
     <style name="Theme.App.Staring" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
         <item name="windowSplashScreenBackground">@color/background</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
         <item name="postSplashScreenTheme">@style/Theme.MiRutaV2</item>
     </style>
 </resources>

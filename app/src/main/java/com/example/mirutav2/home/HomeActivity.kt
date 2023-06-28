@@ -1,10 +1,7 @@
 package com.example.mirutav2.home
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Switch
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -14,18 +11,16 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.IDUSU
-import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
 import com.google.android.material.navigationrail.NavigationRailView
 import org.json.JSONObject
-
-
 
 class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        const val URLBASE = "http://192.168.0.7:8080"
+
+        const val URLBASE = "http://192.168.20.23:8080"
         lateinit var userModel: UserModel
 
     }
@@ -118,5 +113,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 }
