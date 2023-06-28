@@ -15,7 +15,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.stop.DialogStopActivity
 import com.example.mirutav2.home.stop.StopAdapter
 import com.example.mirutav2.home.stop.StopListener

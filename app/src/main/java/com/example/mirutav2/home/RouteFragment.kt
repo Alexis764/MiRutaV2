@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
@@ -28,7 +29,8 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
+import com.example.mirutav2.MainActivity.Companion.URLBASE
+import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.map.MapActivity
 
 import org.json.JSONArray
@@ -42,10 +44,14 @@ class RouteFragment : Fragment(), RouteListener {
 
     private lateinit var queue : RequestQueue
 
+    companion object {
+        const val IDRUT = "idRut"
+    }
+
 
 
     //Variables para componentes
-    private lateinit var cvSearch: CardView
+    private lateinit var cvSearch: LinearLayout
     private lateinit var iedStarRoute: TextInputEditText
     private lateinit var iedDestinationRoute: TextInputEditText
     private lateinit var cvOpenSearch: CardView
@@ -152,7 +158,7 @@ class RouteFragment : Fragment(), RouteListener {
     }
 
     //Funcion metodo get para traer los id de las rutas favoritas para el usuario
-    private fun getIdRoutesFavorites(url: String = "$URLBASE/ruta/listaId/alexis@gmail.com"): StringRequest {
+    private fun getIdRoutesFavorites(url: String = "$URLBASE/ruta/listaId/${userModel.correoUsu}"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonArray = JSONArray(response)
 
@@ -255,7 +261,7 @@ class RouteFragment : Fragment(), RouteListener {
         val parameters = JSONObject()
 
         try {
-            parameters.put("correoUsu", "alexis@gmail.com")
+            parameters.put("correoUsu", userModel.correoUsu)
             parameters.put("idRut", idRut)
 
         } catch (e: JSONException) {
@@ -285,7 +291,7 @@ class RouteFragment : Fragment(), RouteListener {
     //Click en el boton del mapa
     override fun onBtnMapClicked(routeModel: RouteModel) {
         val intent = Intent(this.context, MapActivity::class.java)
-        intent.putExtra("idRut", routeModel.idRut)
+        intent.putExtra(IDRUT, routeModel.idRut)
         startActivity(intent)
     }
 

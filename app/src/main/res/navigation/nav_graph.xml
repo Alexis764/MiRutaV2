@@ -53,5 +53,18 @@
         android:id="@+id/adminFragment"
         android:name="com.example.mirutav2.home.AdminFragment"
         android:label="fragment_admin"
-        tools:layout="@layout/fragment_admin" />
+        tools:layout="@layout/fragment_admin" >
+        <action
+            android:id="@+id/action_adminFragment_to_busFragment"
+            app:destination="@id/busFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/busFragment"
+        android:name="com.example.mirutav2.home.BusFragment"
+        android:label="fragment_bus"
+        tools:layout="@layout/fragment_bus" />
+
+
 </navigation>
