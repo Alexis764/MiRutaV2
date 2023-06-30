@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:statusBarColor">@color/background_cards</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -71,6 +71,13 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+    
+    
+    <!--Style image borders-->
+    <style name="imgRadius">
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
     </style>
 
 

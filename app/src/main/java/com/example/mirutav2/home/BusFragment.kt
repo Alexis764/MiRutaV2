@@ -160,7 +160,7 @@ class BusFragment : Fragment(), RouteBusListener {
     //Funcion para asginar texto de informacion a los textview de la interfaz
     private fun setTextBusInfo() {
         tvBusPlate.text = getString(R.string.plateBus, busModel.placaBus)
-        tvIdUsu.text = getString(R.string.idUsu, userModel.identificacionUsu.toString())
+        tvIdUsu.text = getString(R.string.welcome, userModel.nombreUsu)
     }
 
 

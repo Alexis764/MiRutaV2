@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import android.widget.Toast
@@ -24,6 +25,7 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     //Variables
     private lateinit var queue : RequestQueue
+    private var firstTime = true
 
 
 
@@ -66,6 +69,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var iedEmail: TextInputEditText
     private lateinit var iedPassword: TextInputEditText
     private lateinit var btnLogin: Button
+    private lateinit var btnActivityRegister: TextView
+
 
 
     // Variable para Tema
@@ -91,12 +96,13 @@ class MainActivity : AppCompatActivity() {
     //Funcion que comprobaria las user_credentials para iniciar sesion automaticamente
     private fun initCredentials() {
         CoroutineScope(Dispatchers.IO).launch {
-            getCredentials().collect{userCredentialModel ->
+            getCredentials().filter { firstTime }.collect{userCredentialModel ->
                 if (userCredentialModel != null) {
                     if (userCredentialModel.email.isNotEmpty() && userCredentialModel.password.isNotEmpty()) {
                         queue.add(loginUser(userCredentialModel.email, userCredentialModel.password))
                     }
                 }
+                firstTime = false
             }
         }
     }
@@ -108,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         iedEmail = findViewById(R.id.iedEmail)
         iedPassword = findViewById(R.id.iedPassword)
         btnLogin = findViewById(R.id.btnLogin)
+        btnActivityRegister = findViewById(R.id.btnActivityRegister)
 
         queue = Volley.newRequestQueue(this)
     }
@@ -127,12 +134,16 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Debes completar todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
+        btnActivityRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
 
     //Funciones para comprobar el usuario e iniciar la siguiente actividad
-    //Funcion para mandar los datos y recibit una respuesta
+    //Funcion para mandar los datos
     private fun loginUser(email: String, password: String, url: String = "$URLBASE/usuario/login"): JsonObjectRequest {
         val parameters = JSONObject()
 
@@ -167,6 +178,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         intent.putExtra(IDUSU, idUsu)
         startActivity(intent)
+        finish()
     }
 
 
