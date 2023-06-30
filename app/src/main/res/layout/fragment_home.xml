@@ -5,78 +5,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.HomeFragment">
+    tools:context=".home.HomeFragment"
+    android:background="@color/teal_700">
 
+    <LinearLayout
+        android:id="@+id/welcomeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_box"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1">
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="40sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="35sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/avatarImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeContainer"
+        app:layout_constraintVertical_bias="0.2" />
 
-    <TextView
-        android:id="@+id/nombreTextView"
-        android:layout_width="200dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="Nombre"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textAlignment="center"
-        android:textSize="30dp"
-
-        app:layout_constraintBottom_toBottomOf="@id/correoTextView"
+        android:background="@drawable/rounded_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/avatarImageView"
-        app:layout_constraintVertical_bias="0.6"/>
-
-    <TextView
-        android:id="@+id/correoTextView"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-
-        android:text="Correo"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textAlignment="center"
-        android:textSize="30dp"
-
-        app:layout_constraintBottom_toBottomOf="@id/switch1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nombreTextView"
-        app:layout_constraintVertical_bias="0.2"/>
-
-    <!-- Boton Switch White/Black -->
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEMA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/correoTextView"
-        app:layout_constraintVertical_bias="0.2"
-        android:scaleX="1.8"
-        android:scaleY="1.8"
-        />
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintWidth_percent="0.8">
 
-    <Button
-        android:id="@+id/cerrarSesionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/switch1"
-        app:layout_constraintVertical_bias="0.4"/>
+        <TextView
+            android:id="@+id/correoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Correo"
+            android:textAlignment="center"
+            android:textSize="25sp" />
 
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/correoTextView"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:text="TEMA"
+            android:scaleX="1.5"
+            android:scaleY="1.5"/>
+
+        <Button
+            android:id="@+id/cerrarSesionButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/correoTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="Cerrar sesiÃ³n"
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
