@@ -10,8 +10,8 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
-import com.example.mirutav2.home.HomeActivity
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -47,7 +47,7 @@ class DeleteBusActivity : AppCompatActivity() {
     // Eliminar el dato
     private fun deleteData() {
         btnDeleteBusData.setOnClickListener {
-            val url = HomeActivity.URLBASE +"/bus/eliminar/"+ DeleteDataPlateBus.text.toString()
+            val url = URLBASE +"/bus/eliminar/"+ DeleteDataPlateBus.text.toString()
             val queue = Volley.newRequestQueue(this)
             queue.add(deleteBus(url))
         }

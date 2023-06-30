@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    app:cardBackgroundColor="@color/background_cards"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Theme.MiRutaV2.cardItemsAdminText"
+                android:id="@+id/item_admin_identificationUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Identificacion"/>
+
+            <TextView
+                style="@style/Theme.MiRutaV2.cardItemsAdminText"
+                android:id="@+id/item_admin_nameUsu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre"/>
+
+            <TextView
+                style="@style/Theme.MiRutaV2.cardItemsAdminText"
+                android:id="@+id/item_admin_emailUsu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Correo"/>
+
+            <TextView
+                style="@style/Theme.MiRutaV2.cardItemsAdminText"
+                android:id="@+id/item_admin_rol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rol"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/btn_item_admin_update_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actualizar"
+                style="@style/Theme.MiRutaV2.cardItemsAdminButton"/>
+
+            <Button
+                android:id="@+id/btn_item_admin_delete_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eliminar"
+                style="@style/Theme.MiRutaV2.cardItemsAdminButton"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView >

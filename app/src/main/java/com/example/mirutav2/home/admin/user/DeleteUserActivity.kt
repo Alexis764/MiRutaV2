@@ -10,9 +10,8 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
-import com.example.mirutav2.home.HomeActivity
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import org.json.JSONException
 import org.json.JSONObject
 

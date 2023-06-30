@@ -18,7 +18,18 @@
         android:theme="@style/Theme.MiRutaV2"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".home.admin.user.ListUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.stop.ListStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.route.ListRouteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.bus.ListBusActivity"
+            android:exported="false" />
         <activity
             android:name=".home.admin.user.UpdateUserActivity"
             android:exported="false" />
@@ -36,8 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".home.admin.route.AddRouteActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".home.admin.stop.UpdateStopActivity"
             android:exported="false" />
@@ -55,17 +65,15 @@
             android:exported="false" />
         <activity
             android:name=".home.admin.bus.AddBusActivity"
-            android:exported="false" />
-
-
-        <!-- Meta datas para el uso de google maps -->
-        <!--<meta-data
+            android:exported="false" /> <!-- Meta datas para el uso de google maps -->
+        <!--
+<meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />-->
-
+            android:value="@integer/google_play_services_version" />
+        -->
         <activity
             android:name=".map.MapActivity"
             android:exported="false" />

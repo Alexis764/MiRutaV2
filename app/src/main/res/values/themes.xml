@@ -64,6 +64,25 @@
         <item name="android:background">@drawable/border_basic1</item>
     </style>
 
+
+    <!-- Style Card Items Admin Text-->
+    <style name="Theme.MiRutaV2.cardItemsAdminText">
+        <item name="fontFamily">@font/tiltneon</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!-- Style Card Items Admin Button -->
+    <style name="Theme.MiRutaV2.cardItemsAdminButton">
+        <item name="fontFamily">@font/tiltneon</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:background">@drawable/btn_admin</item>
+        <item name="backgroundTint">@color/accent</item>
+    </style>
+
     <!-- Style Text -->
     <style name="Theme.MiRutaV2.Textos">
         <item name="fontFamily">@font/tiltneon</item>

@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        const val URLBASE = "http://192.168.0.7:8080"
         lateinit var userModel: UserModel
 
     }
