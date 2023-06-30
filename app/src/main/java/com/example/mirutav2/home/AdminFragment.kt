@@ -11,15 +11,19 @@ import android.widget.EditText
 import com.example.mirutav2.R
 import com.example.mirutav2.home.admin.bus.AddBusActivity
 import com.example.mirutav2.home.admin.bus.DeleteBusActivity
+import com.example.mirutav2.home.admin.bus.ListBusActivity
 import com.example.mirutav2.home.admin.bus.UpdateBusActivity
 import com.example.mirutav2.home.admin.route.AddRouteActivity
 import com.example.mirutav2.home.admin.route.DeleteRouteActivity
+import com.example.mirutav2.home.admin.route.ListRouteActivity
 import com.example.mirutav2.home.admin.route.UpdateRouteActivity
 import com.example.mirutav2.home.admin.stop.AddStopActivity
 import com.example.mirutav2.home.admin.stop.DeleteStopActivity
+import com.example.mirutav2.home.admin.stop.ListStopActivity
 import com.example.mirutav2.home.admin.stop.UpdateStopActivity
 import com.example.mirutav2.home.admin.user.AddUserActivity
 import com.example.mirutav2.home.admin.user.DeleteUserActivity
+import com.example.mirutav2.home.admin.user.ListUserActivity
 import com.example.mirutav2.home.admin.user.UpdateUserActivity
 import com.google.android.material.textfield.TextInputEditText
 
@@ -45,20 +49,20 @@ class AdminFragment : Fragment() {
     //Variables Botones Navegacion
         //Route
     private lateinit var btnAddRoute: Button
-    private lateinit var btnUpdateRoute: Button
-    private lateinit var btnDeleteRoute: Button
+    private lateinit var btnListRoute : Button
+
         //Stop
     private lateinit var btnAddStop: Button
-    private lateinit var btnUpdateStop: Button
-    private lateinit var btnDeleteStop: Button
+    private lateinit var btnListStop : Button
+
         //User
     private lateinit var btnAddUser: Button
-    private lateinit var btnUpdateUser: Button
-    private lateinit var btnDeleteUser: Button
+    private lateinit var btnListUser : Button
+
         //Bus
     private lateinit var btnAddBus: Button
-    private lateinit var btnUpdateBus: Button
-    private lateinit var btnDeleteBus: Button
+    private lateinit var btnListBus : Button
+
 
 
     override fun onCreateView(
@@ -82,20 +86,20 @@ class AdminFragment : Fragment() {
 
         //Botones Route
         btnAddRoute = rootView.findViewById(R.id.btnAddRoute)
-        btnUpdateRoute = rootView.findViewById(R.id.btnUpdateRoute)
-        btnDeleteRoute = rootView.findViewById(R.id.btnDeleteRoute)
+        btnListRoute = rootView.findViewById(R.id.btnListRoute)
+
         //Botones Stop
         btnAddStop = rootView.findViewById(R.id.btnAddStop)
-        btnUpdateStop = rootView.findViewById(R.id.btnUpdateStop)
-        btnDeleteStop = rootView.findViewById(R.id.btnDeleteStop)
+        btnListStop = rootView.findViewById(R.id.btnListStop)
+
         //Botones User
         btnAddUser = rootView.findViewById(R.id.btnAddUser)
-        btnUpdateUser = rootView.findViewById(R.id.btnUpdateUser)
-        btnDeleteUser = rootView.findViewById(R.id.btnDeleteUser)
+        btnListUser = rootView.findViewById(R.id.btnListUser)
+
         //Botones Bus
         btnAddBus = rootView.findViewById(R.id.btnAddBus)
-        btnUpdateBus = rootView.findViewById(R.id.btnUpdateBus)
-        btnDeleteBus = rootView.findViewById(R.id.btnDeleteBus)
+        btnListBus = rootView.findViewById(R.id.btnListBus)
+
 
     }
 
@@ -107,51 +111,42 @@ class AdminFragment : Fragment() {
             val intent = Intent(this.context, AddRouteActivity::class.java)
             startActivity(intent)
         }
-        btnUpdateRoute.setOnClickListener{
-            val intent = Intent(this.context, UpdateRouteActivity::class.java)
+
+        btnListRoute.setOnClickListener {
+            val intent = Intent(this.context, ListRouteActivity::class.java)
             startActivity(intent)
         }
-        btnDeleteRoute.setOnClickListener{
-            val intent = Intent(this.context, DeleteRouteActivity::class.java)
-            startActivity(intent)
-        }
+
             // Botones Paradas
         btnAddStop.setOnClickListener{
             val intent = Intent(this.context, AddStopActivity::class.java)
             startActivity(intent)
         }
-        btnUpdateStop.setOnClickListener{
-            val intent = Intent(this.context, UpdateStopActivity::class.java)
+
+        btnListStop.setOnClickListener {
+            val intent = Intent(this.context, ListStopActivity::class.java)
             startActivity(intent)
         }
-        btnDeleteStop.setOnClickListener{
-            val intent = Intent(this.context, DeleteStopActivity::class.java)
-            startActivity(intent)
-        }
+
             // Botones Usuario
         btnAddUser.setOnClickListener{
             val intent = Intent(this.context, AddUserActivity::class.java)
             startActivity(intent)
         }
-        btnUpdateUser.setOnClickListener{
-            val intent = Intent(this.context, UpdateUserActivity::class.java)
+
+        btnListUser.setOnClickListener {
+            val intent = Intent(this.context, ListUserActivity::class.java)
             startActivity(intent)
         }
-        btnDeleteUser.setOnClickListener{
-            val intent = Intent(this.context, DeleteUserActivity::class.java)
-            startActivity(intent)
-        }
+
             //Botones Bus
         btnAddBus.setOnClickListener{
             val intent = Intent(this.context, AddBusActivity::class.java)
             startActivity(intent)
         }
-        btnUpdateBus.setOnClickListener{
-            val intent = Intent(this.context, UpdateBusActivity::class.java)
-            startActivity(intent)
-        }
-        btnDeleteBus.setOnClickListener{
-            val intent = Intent(this.context, DeleteBusActivity::class.java)
+
+        btnListBus.setOnClickListener {
+            val intent = Intent(this.context, ListBusActivity::class.java)
             startActivity(intent)
         }
 

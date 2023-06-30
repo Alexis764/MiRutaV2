@@ -7,19 +7,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
-import com.example.mirutav2.home.AdminFragment
-import com.example.mirutav2.home.HomeActivity.Companion.URLBASE
 import org.json.JSONException
 import org.json.JSONObject
 
 class AddUserActivity : AppCompatActivity() {
 
     // Variables Datos
+    private lateinit var AddDataIdentificationUser : EditText
     private lateinit var AddDataEmail : EditText
     private lateinit var AddDataPassword : EditText
     private lateinit var AddDataName : EditText
@@ -45,6 +44,7 @@ class AddUserActivity : AppCompatActivity() {
     // Recoleccion de datos
 
     private fun initData() {
+        AddDataIdentificationUser = findViewById(R.id.AddDataIdentificationUser)
         AddDataEmail = findViewById(R.id.AddDataEmail)
         AddDataPassword = findViewById(R.id.AddDataPassword)
         AddDataName = findViewById(R.id.AddDataName)
@@ -70,9 +70,20 @@ class AddUserActivity : AppCompatActivity() {
 
     private fun sendData() {
         btnSendUserData.setOnClickListener {
-        val url = URLBASE+"/usuario/agregar"
-        val queue = Volley.newRequestQueue(this)
-        queue.add(AddUser(url))
+
+            // Limpiar espacios en blanco
+            val identification = AddDataIdentificationUser.text.toString().trim()
+            val email = AddDataEmail.text.toString().trim()
+            val password = AddDataPassword.text.toString().trim()
+            val name = AddDataName.text.toString().trim()
+            val photo = AddDataPhoto.text.toString().trim()
+            val rol = AddDataRol.text.toString().trim()
+
+            if (identification.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && photo.isNotEmpty() && rol.isNotEmpty()) {
+                val url = URLBASE + "/usuario/agregar"
+                val queue = Volley.newRequestQueue(this)
+                queue.add(AddUser(url))
+            }
         }
     }
 
@@ -82,11 +93,12 @@ class AddUserActivity : AppCompatActivity() {
         val parametros = JSONObject()
 
         try {
+            parametros.put("identificacionUsu", AddDataIdentificationUser.text.toString())
             parametros.put("correoUsu", AddDataEmail.text.toString())
-            parametros.put("contrasenaUsu", AddDataPassword.text.toString())
+            parametros.put("contraseniaUsu", AddDataPassword.text.toString())
             parametros.put("nombreUsu", AddDataName.text.toString())
             parametros.put("fotoUsu", AddDataPhoto.text.toString())
-            parametros.put("rol", AddDataRol.text.toString())
+            parametros.put("tipoUsuario", AddDataRol.text.toString())
 
         }catch (e: JSONException){
             Log.e("AddUserJson", e.toString())

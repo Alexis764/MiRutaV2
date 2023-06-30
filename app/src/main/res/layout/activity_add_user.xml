@@ -31,6 +31,18 @@
 
 
     <EditText
+        android:id="@+id/AddDataIdentificationUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el numero de identificacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleUserData"
+        app:layout_constraintVertical_bias="0.1"
+        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+
+    <EditText
         android:id="@+id/AddDataEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleUserData"
+        app:layout_constraintTop_toBottomOf="@+id/AddDataIdentificationUser"
         app:layout_constraintVertical_bias="0.1"
         android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
 

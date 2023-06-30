@@ -23,6 +23,55 @@
 
 
         <!-- Meta datas para el uso de google maps -->
+        <activity
+            android:name=".home.admin.user.ListUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.stop.ListStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.route.ListRouteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.bus.ListBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.user.UpdateUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.user.DeleteUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.user.AddUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.route.UpdateRouteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.route.DeleteRouteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.route.AddRouteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.stop.UpdateStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.stop.DeleteStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.stop.AddStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.bus.DeleteBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.bus.UpdateBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.admin.bus.AddBusActivity"
+            android:exported="false" /> <!-- Meta datas para el uso de google maps -->
+        <!--
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
@@ -79,6 +128,9 @@
         <activity
             android:name=".home.admin.bus.AddBusActivity"
             android:exported="false" />
+
+
+        -->
 
         <activity
             android:name=".map.MapActivity"

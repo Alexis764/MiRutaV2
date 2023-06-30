@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.IDUSU
+import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
 import com.google.android.material.navigationrail.NavigationRailView
 import org.json.JSONObject
@@ -19,10 +20,7 @@ class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-
-        const val URLBASE = "http://192.168.20.23:8080"
         lateinit var userModel: UserModel
-
     }
 
 
