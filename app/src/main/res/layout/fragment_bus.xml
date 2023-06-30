@@ -17,20 +17,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvBusPlate"
+            android:id="@+id/tvIdUsu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:theme="@style/styleSubtitle"
-            tools:text="@string/plateBus">
+            tools:text="@string/welcome">
         </TextView>
 
         <TextView
-            android:id="@+id/tvIdUsu"
+            android:id="@+id/tvBusPlate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/styleSubtitle"
-            tools:text="@string/idUsu">
+            tools:text="@string/plateBus">
         </TextView>
 
     </LinearLayout>

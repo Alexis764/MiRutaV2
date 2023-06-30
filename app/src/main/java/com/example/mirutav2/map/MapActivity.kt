@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -50,6 +51,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var timerLocation: CountDownTimer
 
 
+
     //Variables para paradas
     private var stopList = ArrayList<StopModel>()
     private var markerList = mutableListOf<Marker>()
@@ -64,14 +66,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
 
+    //Variables para componentes
+    private lateinit var btnCenterRoute: FloatingActionButton
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
         initArguments()
         initComponent()
-        initListeners()
         initUi()
+        initListeners()
 
     }
 
@@ -92,13 +99,24 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 timerLocation.start()
             }
         }
+
+        btnCenterRoute = findViewById(R.id.btnCenterRoute)
     }
 
 
 
     //Inicio de funciones click
     private fun initListeners() {
+        btnCenterRoute.setOnClickListener {
+            val firstStop = stopList.first()
+            val coordinates: LatLng = LatLng(firstStop.latitudPar, firstStop.longitudPar)
 
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(coordinates, 14f),
+                4000,
+                null
+            )
+        }
     }
 
 

@@ -18,32 +18,51 @@
         app:layout_constraintTop_toTopOf="parent"
         app:cardBackgroundColor="@color/background_cards">
 
-        <TextView
-            android:id="@+id/tvNameStopDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_gravity="center"
-            android:theme="@style/styleSubtitle"
-            tools:text="@string/searchNameStop"
-            android:textAllCaps="true">
-        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tvNameStopDialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="13dp"
+                android:layout_gravity="center"
+                android:theme="@style/styleSubtitle"
+                tools:text="@string/searchNameStop"
+                android:textAllCaps="true">
+            </TextView>
+
+            <ImageView
+                android:id="@+id/btnCloseDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="13dp"
+                android:contentDescription="@string/content_img_close"
+                android:src="@drawable/ic_close"
+                app:tint="@color/white">
+            </ImageView>
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivPhotoStopDialog"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvNameStopDialog"
-        tools:src="@drawable/ic_circle"
-        android:contentDescription="@string/content_img_stop">
-    </ImageView>
+        android:scaleType="centerCrop"
+        tools:src="@drawable/logoapp"
+        android:contentDescription="@string/content_img_stop"
+        app:shapeAppearanceOverlay="@style/imgRadius">
+    </com.google.android.material.imageview.ShapeableImageView>
 
 
 
@@ -59,97 +78,27 @@
         android:orientation="vertical">
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginVertical="3dp"
-            android:background="@color/accent">
-        </View>
-
-
-        <TextView
-            android:id="@+id/tvAddressStopDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="7dp"
-            android:theme="@style/styleSubtitle"
-            tools:text="@string/address">
-        </TextView>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginVertical="3dp"
-            android:background="@color/accent">
-        </View>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:textStyle="bold"
+                android:layout_margin="7dp"
                 android:theme="@style/styleSubtitle"
-                android:textAlignment="center"
-                android:text="@string/latitudeStop"
-                android:textAllCaps="true"
-                android:layout_marginVertical="7dp">
+                android:text="@string/address">
             </TextView>
 
-            <View
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="3dp"
-                android:background="@color/accent">
-            </View>
-
             <TextView
-                android:layout_width="0dp"
+                android:id="@+id/tvAddressStopDialog"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:theme="@style/styleSubtitle"
-                android:text="@string/longitudeStop"
-                android:textAllCaps="true"
-                android:textAlignment="center"
-                android:layout_marginVertical="7dp">
-            </TextView>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvLatitudeStopDialog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:theme="@style/styleSubtitle"
-                tools:text="@string/latitudeStop"
-                android:textAlignment="center">
-            </TextView>
-
-            <View
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="3dp"
-                android:background="@color/accent">
-            </View>
-
-            <TextView
-                android:id="@+id/tvLongitudeStopDialog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:theme="@style/styleSubtitle"
-                tools:text="@string/longitudeStop"
-                android:textAlignment="center">
+                android:textStyle="normal"
+                tools:text="@string/address">
             </TextView>
 
         </LinearLayout>
