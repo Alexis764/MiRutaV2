@@ -6,8 +6,20 @@
     <string name="main_email">Correo</string>
     <string name="main_password">Contraseña</string>
     <string name="main_login">Iniciar sesion</string>
+    <string name="questionRegiter">¿Aun no tienes cuenta?</string>
 
     <string name="content_main_logo">Logo</string>
+
+
+    <!--Register activity-->
+    <string name="register_id">Identificacion</string>
+    <string name="register_name">Nombre</string>
+
+    <string name="btnImage">Foto</string>
+    <string name="btnRegister">Registrarse</string>
+
+    <string name="titleDialogPin">Pin de comprobacion</string>
+    <string name="btnVerificationPin">Comprobar pin</string>
 
 
     <!--Home-->
@@ -47,7 +59,7 @@
     <string name="searchNameStop">Nombre parada</string>
 
     <!--Item stop-->
-    <string name="address">Direccion</string>
+    <string name="address">Direccion: </string>
 
     <string name="content_img_stop">Imagen de la parada</string>
 
@@ -56,14 +68,25 @@
     <string name="longitudeStop">Longitud</string>
     <string name="routesStopTitle">Rutas asignadas</string>
 
-    <string name="content_img_rorNext">Imagen flecha</string>
+    <string name="content_img_close">Imagen para cerrar el detalle</string>
+
 
 
     <!--Fragment bus-->
-    <string name="plateBus">Placa bus: %s</string>
-    <string name="idUsu">Conductor: %s</string>
+    <string name="plateBus">Bus: %s</string>
+    <string name="welcome">Bienvenido %s</string>
 
     <!--Item route - bus-->
     <string name="initRoute">Iniciar ruta</string>
 
+
+
+
+
+
+
+
+
+
+    <string name="content_img_rorNext">Imagen flecha</string>
 </resources>

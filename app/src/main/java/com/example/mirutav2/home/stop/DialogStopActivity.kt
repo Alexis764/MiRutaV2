@@ -43,8 +43,7 @@ class DialogStopActivity : AppCompatActivity() {
     private lateinit var tvNameStopDialog: TextView
     private lateinit var ivPhotoStopDialog: ImageView
     private lateinit var tvAddressStopDialog: TextView
-    private lateinit var tvLatitudeStopDialog: TextView
-    private lateinit var tvLongitudeStopDialog: TextView
+    private lateinit var btnCloseDialog: ImageView
 
 
 
@@ -62,6 +61,7 @@ class DialogStopActivity : AppCompatActivity() {
         initComponent()
         initArguments()
         initUi()
+        initListeners()
 
     }
 
@@ -72,9 +72,8 @@ class DialogStopActivity : AppCompatActivity() {
         tvNameStopDialog = findViewById(R.id.tvNameStopDialog)
         ivPhotoStopDialog = findViewById(R.id.ivPhotoStopDialog)
         tvAddressStopDialog = findViewById(R.id.tvAddressStopDialog)
-        tvLatitudeStopDialog = findViewById(R.id.tvLatitudeStopDialog)
-        tvLongitudeStopDialog = findViewById(R.id.tvLongitudeStopDialog)
         rvRoutesToStopDialog = findViewById(R.id.rvRoutesToStopDialog)
+        btnCloseDialog = findViewById(R.id.btnCloseDialog)
 
         queue = Volley.newRequestQueue(this)
     }
@@ -98,8 +97,6 @@ class DialogStopActivity : AppCompatActivity() {
         tvNameStopDialog.text = nombrePar
         loadPhotoStop()
         tvAddressStopDialog.text = direccionPar
-        tvLatitudeStopDialog.text = latitudPar.toString()
-        tvLongitudeStopDialog.text = longitudPar.toString()
         initRvRoutesToStopDialog(idPar)
     }
 
@@ -108,7 +105,6 @@ class DialogStopActivity : AppCompatActivity() {
         try {
             Glide.with(ivPhotoStopDialog.context)
                 .load(imgPar)
-                .circleCrop()
                 .into(ivPhotoStopDialog)
 
         }  catch (e: Exception) {
@@ -170,5 +166,14 @@ class DialogStopActivity : AppCompatActivity() {
         stopRouteAdapter = StopRouteAdapter(stopRouteList)
         rvRoutesToStopDialog.layoutManager = LinearLayoutManager(this)
         rvRoutesToStopDialog.adapter = stopRouteAdapter
+    }
+
+
+
+    //Funciones click de los componentes
+    private fun initListeners() {
+        btnCloseDialog.setOnClickListener {
+            onBackPressed()
+        }
     }
 }
