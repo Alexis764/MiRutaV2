@@ -165,6 +165,7 @@ class StopFragment : Fragment(), StopListener {
 
 
 
+    //Click en el item de paradas
     override fun onItemStopClicked(stopModel: StopModel) {
         val intent = Intent(this.context, DialogStopActivity::class.java)
 

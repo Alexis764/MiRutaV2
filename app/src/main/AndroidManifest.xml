@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
+
+
     <!-- Permiso de internet, para funcionamiento de volley -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permiso de localizacion para maps -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <!-- Permiso de localizacion para maps -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -16,59 +22,9 @@
         android:theme="@style/Theme.MiRutaV2"
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
+
         <!-- Meta datas para el uso de google maps -->
-        <activity
-            android:name=".home.admin.user.ListUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.stop.ListStopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.route.ListRouteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.bus.ListBusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.user.UpdateUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.user.DeleteUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.user.AddUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.route.UpdateRouteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.route.DeleteRouteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.route.AddRouteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.stop.UpdateStopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.stop.DeleteStopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.stop.AddStopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.bus.DeleteBusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.bus.UpdateBusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".home.admin.bus.AddBusActivity"
-            android:exported="false" /> <!-- Meta datas para el uso de google maps -->
-        <!--
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
@@ -76,64 +32,102 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+
+        <!-- Activities -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".home.admin.user.ListUserActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".home.admin.stop.ListStopActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".home.admin.route.ListRouteActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".home.admin.bus.ListBusActivity"
+            android:exported="false" />
+
         <activity
             android:name=".home.admin.user.UpdateUserActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.user.DeleteUserActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.user.AddUserActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.route.UpdateRouteActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.route.DeleteRouteActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.route.AddRouteActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.stop.UpdateStopActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.stop.DeleteStopActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.stop.AddStopActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.bus.DeleteBusActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.bus.UpdateBusActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.admin.bus.AddBusActivity"
             android:exported="false" />
 
-        -->
-
         <activity
             android:name=".map.MapActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.stop.DialogStopActivity"
             android:exported="false" />
+
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
+
+
+        <!-- Activity init -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Staring" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
+
 
 </manifest>

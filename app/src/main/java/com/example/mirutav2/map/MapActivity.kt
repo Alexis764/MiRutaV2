@@ -109,7 +109,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initListeners() {
         btnCenterRoute.setOnClickListener {
             val firstStop = stopList.first()
-            val coordinates: LatLng = LatLng(firstStop.latitudPar, firstStop.longitudPar)
+            val coordinates = LatLng(firstStop.latitudPar, firstStop.longitudPar)
 
             map.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(coordinates, 14f),
