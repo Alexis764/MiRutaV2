@@ -112,7 +112,7 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
     }
 
     override fun onBtnDeleteClicked(userModel: UserModel) {
-        val url = "$URLBASE/usuario/eliminar/${userModel.identificacionUsu}"
+        val url = "$URLBASE/usuario/eliminar/${userModel.idUsu}"
         val queue = Volley.newRequestQueue(this)
         queue.add(deleteUser(url, userModel))
     }
@@ -122,7 +122,7 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
         val parametros = JSONObject()
 
         try {
-            parametros.put("identificacionUsu", userModel.identificacionUsu.toString())
+            parametros.put("identificacionUsu", userModel.idUsu.toString())
         } catch (e: JSONException) {
             Log.e("DeleteUserJson", e.toString())
         }

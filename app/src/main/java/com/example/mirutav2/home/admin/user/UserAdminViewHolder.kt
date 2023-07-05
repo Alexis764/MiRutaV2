@@ -25,7 +25,7 @@ class UserAdminViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
     fun render(userModel: UserModel) {
 
-        itemidentification.text = userModel.identificacionUsu.toString()
+        itemidentification.text = userModel.idUsu.toString()
         itemname.text = userModel.nombreUsu
         itememail.text = userModel.correoUsu
         itemrol.text = userModel.tipoUsuario.toString()

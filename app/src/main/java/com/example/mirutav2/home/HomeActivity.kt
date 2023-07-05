@@ -21,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
     //Constantes
     companion object {
         lateinit var userModel: UserModel
+        var userDriverId: Long = 0
     }
 
 
@@ -28,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
     //Variables
     private lateinit var navController: NavController
     private lateinit var queue: RequestQueue
-    private var identificacionUsu: Long = 0
+    private var idUsu: Long = 0
 
 
 
@@ -41,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        identificacionUsu = intent.extras?.getLong(IDUSU) ?: 0
+        idUsu = intent.extras?.getLong(IDUSU) ?: 0
 
         initComponent()
         initController()
@@ -69,7 +70,7 @@ class HomeActivity : AppCompatActivity() {
 
 
     //Funciones para traer la informacion del usuario
-    private fun getUser(url: String = "$URLBASE/usuario/buscar/$identificacionUsu"): StringRequest {
+    private fun getUser(url: String = "$URLBASE/usuario/buscar/$idUsu"): StringRequest {
         val stringRequest = StringRequest(Request.Method.GET, url, {response ->
             val jsonObject = JSONObject(response)
 
@@ -84,14 +85,14 @@ class HomeActivity : AppCompatActivity() {
 
     //Funcion para crear un usuario con una data class
     private fun createUser(jsonObject: JSONObject) {
-        val identificacionUsu = jsonObject.getLong("identificacionUsu")
+        val idUsu = jsonObject.getLong("idUsu")
         val correoUsu = jsonObject.getString("correoUsu")
         val contraseniaUsu = jsonObject.getString("contraseniaUsu")
         val nombreUsu = jsonObject.getString("nombreUsu")
         val fotoUsu = jsonObject.getString("fotoUsu")
         val tipoUsuario = jsonObject.getInt("tipoUsuario")
 
-        userModel = UserModel(identificacionUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
+        userModel = UserModel(idUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
         setMenuVisibility(userModel.tipoUsuario)
     }
 
@@ -105,6 +106,7 @@ class HomeActivity : AppCompatActivity() {
             }
             2 -> { //Driver
                 nrvHome.menu.getItem(4).isVisible = false
+                queue.add(getDriverUser())
 
             }
             0 -> { //Admin
@@ -113,6 +115,21 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
+
+    //Funciones para traer la informacion del conductor en caso de que ese sea le rol del usuario
+    private fun getDriverUser(url: String = "$URLBASE/conductor/buscar/${userModel.idUsu}"): StringRequest {
+        val stringRequest = StringRequest(Request.Method.GET, url, {response ->
+            val jsonObject = JSONObject(response)
+
+            userDriverId = jsonObject.getLong("identificacionCon")
+
+        }, {error ->
+            Log.e("Volley_getUser", error.toString())
+        })
+
+        return stringRequest
+    }
 
 
 }

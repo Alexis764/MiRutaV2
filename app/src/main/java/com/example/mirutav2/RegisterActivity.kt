@@ -28,7 +28,6 @@ class RegisterActivity : AppCompatActivity() {
 
 
     //Variables para componentes
-    private lateinit var iedIdRegister: TextInputEditText
     private lateinit var iedNameRegister: TextInputEditText
     private lateinit var iedEmailRegister: TextInputEditText
     private lateinit var iedPasswordRegister: TextInputEditText
@@ -58,7 +57,6 @@ class RegisterActivity : AppCompatActivity() {
 
     //Conexion de componentes a vista
     private fun initComponent() {
-        iedIdRegister = findViewById(R.id.iedIdRegister)
         iedNameRegister = findViewById(R.id.iedNameRegister)
         iedEmailRegister = findViewById(R.id.iedEmailRegister)
         iedPasswordRegister = findViewById(R.id.iedPasswordRegister)
@@ -73,15 +71,13 @@ class RegisterActivity : AppCompatActivity() {
     //Funciones click de los componentes
     private fun initListeners() {
         btnRegister.setOnClickListener {
-            val identificacionUsu = iedIdRegister.text.toString()
             val nombreUsu = iedNameRegister.text.toString()
             val correoUsu = iedEmailRegister.text.toString()
             val contraseniaUsu = iedPasswordRegister.text.toString()
 
-            if (identificacionUsu.isNotEmpty() && nombreUsu.isNotEmpty() &&
-                correoUsu.isNotEmpty() && contraseniaUsu.isNotEmpty()) {
+            if (nombreUsu.isNotEmpty() && correoUsu.isNotEmpty() && contraseniaUsu.isNotEmpty()) {
 
-                queue.add(verificationUser(identificacionUsu, nombreUsu, correoUsu, contraseniaUsu))
+                queue.add(verificationUser(nombreUsu, correoUsu, contraseniaUsu))
 
             } else {
                 Toast.makeText(this, "Debes completar todos los campos", Toast.LENGTH_SHORT).show()
@@ -93,8 +89,7 @@ class RegisterActivity : AppCompatActivity() {
 
     //Funciones para registrar el usuario e iniciar la siguiente actividad
     //Funcion para mandar los datos a comprobacion
-    private fun verificationUser(identificacionUsu: String,
-                             nombreUsu: String,
+    private fun verificationUser(nombreUsu: String,
                              correoUsu: String,
                              contraseniaUsu: String,
                              url: String = "$URLBASE/usuario/comprobar"
@@ -102,7 +97,6 @@ class RegisterActivity : AppCompatActivity() {
         val parameters = JSONObject()
 
         try {
-            parameters.put("identificacionUsu", identificacionUsu)
             parameters.put("correoUsu", correoUsu)
             parameters.put("contraseniaUsu", contraseniaUsu)
             parameters.put("nombreUsu", nombreUsu)
@@ -115,11 +109,11 @@ class RegisterActivity : AppCompatActivity() {
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parameters, { response ->
             if (response.getBoolean("permiso")) {
-                val pin1 = response.getInt("pin1")
-                val pin2 = response.getInt("pin2")
-                val pin3 = response.getInt("pin3")
-                val pin4 = response.getInt("pin4")
-                val pin5 = response.getInt("pin5")
+                val pin1 = response.getInt("pinUno")
+                val pin2 = response.getInt("pinDos")
+                val pin3 = response.getInt("pinTres")
+                val pin4 = response.getInt("pinCuatro")
+                val pin5 = response.getInt("pinCinco")
 
                 startDialogPinVerification(parameters, pin1, pin2, pin3, pin4, pin5)
 

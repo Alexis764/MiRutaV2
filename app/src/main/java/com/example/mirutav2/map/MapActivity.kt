@@ -18,6 +18,8 @@ import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.BusFragment.Companion.PLACABUS
+import com.example.mirutav2.home.HomeActivity
+import com.example.mirutav2.home.HomeActivity.Companion.userDriverId
 import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.home.RouteFragment.Companion.IDRUT
 import com.example.mirutav2.home.stop.StopModel
@@ -372,7 +374,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             parameters.put("placaBus", placaBus)
             parameters.put("longitudBus", lastKnownLocation.longitude)
             parameters.put("latitudBus", lastKnownLocation.latitude)
-            parameters.put("identificacionUsu", userModel.identificacionUsu)
+            parameters.put("identificacionCon", userDriverId)
 
         } catch (e: JSONException) {
             Log.e("sendLastLocation_JSON", e.toString())

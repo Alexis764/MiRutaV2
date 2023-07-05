@@ -16,6 +16,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
+import com.example.mirutav2.home.HomeActivity.Companion.userDriverId
 import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.home.RouteFragment.Companion.IDRUT
 import com.example.mirutav2.home.bus.BusModel
@@ -88,7 +89,7 @@ class BusFragment : Fragment(), RouteBusListener {
 
 
     //Traer la informacion del bus que maneja las rutas
-    private fun getBusInfo(url: String = "$URLBASE/bus/buscarUsu/${userModel.identificacionUsu}"): StringRequest {
+    private fun getBusInfo(url: String = "$URLBASE/bus/buscarUsu/$userDriverId"): StringRequest {
         val stringReques = StringRequest(Request.Method.GET, url, {response ->
             val jsonObject = JSONObject(response)
 
@@ -109,7 +110,7 @@ class BusFragment : Fragment(), RouteBusListener {
 
 
     //Funcion metodo get para traer las rutas
-    private fun initRvBus(url: String = "$URLBASE/ruta/listarBus/${userModel.identificacionUsu}"): StringRequest {
+    private fun initRvBus(url: String = "$URLBASE/ruta/listarBus/$userDriverId"): StringRequest {
         val stringReques = StringRequest(Request.Method.GET, url, {response ->
             val jsonArray = JSONArray(response)
 
