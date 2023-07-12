@@ -38,23 +38,11 @@ class MainActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        const val URLBASE = "http://192.168.20.23:8080"
+        const val URLBASE = "http://192.168.0.6:8080"
         const val IDUSU = "idUsu"
 
         const val EMAILCREDENTIAL = "emailCredential"
         const val PASSWORDCREDENTIAL = "passwordCredential"
-
-        // Tema Claro/Oscuro
-        fun setDayNight(context: Context) {
-            val sp = context.getSharedPreferences("SP", Context.MODE_PRIVATE)
-            val theme = sp.getInt("Theme", 1)
-
-            if (theme == 0) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
     }
 
 
@@ -87,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         initCredentials()
         initComponent()
         initListeners()
-        setDayNight(this)
 
     }
 
