@@ -7,25 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import com.example.mirutav2.R
 import com.example.mirutav2.home.admin.bus.AddBusActivity
-import com.example.mirutav2.home.admin.bus.DeleteBusActivity
 import com.example.mirutav2.home.admin.bus.ListBusActivity
-import com.example.mirutav2.home.admin.bus.UpdateBusActivity
 import com.example.mirutav2.home.admin.route.AddRouteActivity
-import com.example.mirutav2.home.admin.route.DeleteRouteActivity
 import com.example.mirutav2.home.admin.route.ListRouteActivity
-import com.example.mirutav2.home.admin.route.UpdateRouteActivity
 import com.example.mirutav2.home.admin.stop.AddStopActivity
-import com.example.mirutav2.home.admin.stop.DeleteStopActivity
 import com.example.mirutav2.home.admin.stop.ListStopActivity
-import com.example.mirutav2.home.admin.stop.UpdateStopActivity
 import com.example.mirutav2.home.admin.user.AddUserActivity
-import com.example.mirutav2.home.admin.user.DeleteUserActivity
 import com.example.mirutav2.home.admin.user.ListUserActivity
-import com.example.mirutav2.home.admin.user.UpdateUserActivity
-import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

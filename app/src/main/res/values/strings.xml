@@ -11,7 +11,6 @@
     <string name="content_main_logo">Logo</string>
 
 
-
     <!--Register activity-->
     <string name="register_id">Identificacion</string>
     <string name="register_name">Nombre</string>
@@ -26,7 +25,6 @@
     <!--Home-->
 
 
-
     <!--Menu-->
     <string name="home">Inicio</string>
     <string name="route">Rutas</string>
@@ -34,7 +32,6 @@
     <string name="favorite">Favoritos</string>
     <string name="admin">Admin</string>
     <string name="bus">Bus</string>
-
 
 
     <!--Fragment route-->
@@ -58,7 +55,6 @@
     <string name="content_img_circle">Imagen circulo</string>
 
 
-
     <!--Fragment stop-->
     <string name="searchNameStop">Nombre parada</string>
 
@@ -75,21 +71,12 @@
     <string name="content_img_close">Imagen para cerrar el detalle</string>
 
 
-
     <!--Fragment bus-->
     <string name="plateBus">Bus: %s</string>
     <string name="welcome">Bienvenido %s</string>
 
     <!--Item route - bus-->
     <string name="initRoute">Iniciar ruta</string>
-
-
-
-
-
-
-
-
 
 
     <string name="content_img_rorNext">Imagen flecha</string>

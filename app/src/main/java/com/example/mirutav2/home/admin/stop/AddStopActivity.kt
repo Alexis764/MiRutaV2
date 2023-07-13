@@ -13,17 +13,18 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
+import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONException
 import org.json.JSONObject
 
 class AddStopActivity : AppCompatActivity() {
 
     // Variables Datos
-    private lateinit var AddDataNameStop : EditText
-    private lateinit var AddDataAddress : EditText
-    private lateinit var AddDataLength : EditText
-    private lateinit var AddDataLatitude : EditText
-    private lateinit var AddDataImgStop : EditText
+    private lateinit var AddDataNameStop : TextInputEditText
+    private lateinit var AddDataAddress : TextInputEditText
+    private lateinit var AddDataLength : TextInputEditText
+    private lateinit var AddDataLatitude : TextInputEditText
+    private lateinit var AddDataImgStop : TextInputEditText
 
     // Variables Botones
     private lateinit var btnCloseStop : ImageButton
@@ -62,9 +63,21 @@ class AddStopActivity : AppCompatActivity() {
 
     private fun sendData() {
         btnSendStopData.setOnClickListener {
-            val url = URLBASE+"/parada/agregar"
-            val queue = Volley.newRequestQueue(this)
-            queue.add(AddStop(url))
+
+            // Limpiar espacios en blanco
+            val nombrePara = AddDataNameStop.text.toString().trim()
+            val direccionPara = AddDataAddress.text.toString().trim()
+            val longitud = AddDataLength.text.toString().trim()
+            val latitud = AddDataLatitude.text.toString().trim()
+            val imgParada = AddDataImgStop.text.toString().trim()
+
+            if(nombrePara.isNotEmpty() && direccionPara.isNotEmpty() && longitud.isNotEmpty() && latitud.isNotEmpty() && imgParada.isNotEmpty()){
+                val url = "$URLBASE/parada/guardar"
+                val queue = Volley.newRequestQueue(this)
+                queue.add(AddStop(url))
+            }else {
+                Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -73,11 +86,11 @@ class AddStopActivity : AppCompatActivity() {
         val parametros = JSONObject()
 
         try {
-            parametros.put("nombrePara", AddDataNameStop.text.toString())
-            parametros.put("direccionPara", AddDataAddress.text.toString())
-            parametros.put("longitud", AddDataLength.text.toString())
-            parametros.put("latitud", AddDataLatitude.text.toString())
-            parametros.put("imgParada", AddDataImgStop.text.toString())
+            parametros.put("nombrePar", AddDataNameStop.text.toString())
+            parametros.put("direccionPar", AddDataAddress.text.toString())
+            parametros.put("longitudPar", AddDataLength.text.toString())
+            parametros.put("latitudPar", AddDataLatitude.text.toString())
+            parametros.put("imgPar", AddDataImgStop.text.toString())
         } catch (e: JSONException){
             Log.e("AddStopJson", e.toString())
         }

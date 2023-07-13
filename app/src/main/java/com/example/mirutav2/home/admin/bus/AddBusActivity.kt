@@ -58,7 +58,7 @@ class AddBusActivity : AppCompatActivity() {
             val placa = AddDataPlate.text.toString().trim()
 
             if(placa.isNotEmpty()){
-                val url = URLBASE +"/bus/guardar"
+                val url = "$URLBASE/bus/guardar"
                 val queue = Volley.newRequestQueue(this)
                 queue.add(AddBus(url))
             } else {

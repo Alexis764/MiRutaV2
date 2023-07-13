@@ -25,68 +25,141 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/Theme.MiRutaV2.titulosAdmin"
-        android:text="AGREGAR DATOS DE RUTA"
+        android:text="GUARDAR RUTA"
         app:layout_constraintVertical_bias="0.1"/>
 
 
-    <EditText
-        android:id="@+id/AddDataStartLocation"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese el lugar de inicio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleRouteData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TitleRouteData"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1"
-        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+        android:gravity="center"
+        android:background="@color/background_admin"
+        android:layout_margin="8dp"
+        android:id="@+id/cardBackgroundRoute">
 
-    <EditText
-        android:id="@+id/AddDataFinalLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese el lugar de final"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddDataStartLocation"
-        app:layout_constraintVertical_bias="0.1"
-        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese el lugar de inicio"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TitleRouteData"
+            app:layout_constraintVertical_bias="0.1"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
 
-    <EditText
-        android:id="@+id/AddDataStartTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese la hora de inicio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddDataFinalLocation"
-        app:layout_constraintVertical_bias="0.1"
-        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataStartLocation"
+                />
 
-    <EditText
-        android:id="@+id/AddDataFinalTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese la hora final"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddDataStartTime"
-        app:layout_constraintVertical_bias="0.1"
-        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese el lugar de final"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataStartLocation"
+            app:layout_constraintVertical_bias="0.1"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataFinalLocation"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese la hora de inicio"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataFinalLocation"
+            app:layout_constraintVertical_bias="0.1"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataStartTime"
+                android:inputType="time"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese la hora final"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataStartTime"
+            app:layout_constraintVertical_bias="0.1"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataFinalTime"
+                android:inputType="time"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese los horarios"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataFinalTime"
+            app:layout_constraintVertical_bias="0.1"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataDays"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/AddDataFinalTime"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="ENVIAR"
-        android:theme="@style/Theme.MiRutaV2.botones"
-        android:id="@+id/btnSendRouteData"/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataFinalTime"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="GUARDAR"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:id="@+id/btnSendRouteData"
+            android:layout_margin="15dp"/>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
         android:width="2dp"/>
 
     <solid
-        android:color="@color/accent"/>
+        android:color="@color/background_cards"/>
 
     <corners
         android:radius="8dp"/>

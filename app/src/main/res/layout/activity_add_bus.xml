@@ -25,33 +25,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:theme="@style/Theme.MiRutaV2.titulosAdmin"
-        android:text="AGREGAR DATOS DE BUS"
+        android:text="GUARDAR BUS"
         app:layout_constraintVertical_bias="0.1"/>
 
 
-    <EditText
-        android:id="@+id/AddDataPlate"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese la placa del Bus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleBusData"
-        app:layout_constraintVertical_bias="0.1"
-        android:theme="@style/Theme.MiRutaV2.editTextAdmin"/>
-
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/AddDataPlate"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TitleBusData"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1"
-        android:text="ENVIAR"
-        android:theme="@style/Theme.MiRutaV2.botones"
-        android:id="@+id/btnSendBusData"/>
+        android:gravity="center"
+        android:background="@color/background_admin"
+        android:layout_margin="8dp"
+        android:id="@+id/cardBackgroundBus">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese placa bus"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBackgroundBus"
+            app:layout_constraintVertical_bias="0.1"
+
+            android:inputType="text"
+            android:theme="@style/Theme.MiRutaV2.editTextAdmin"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDataPlate"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSendBusData"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddDataPlate"
+            app:layout_constraintVertical_bias="0.1"
+            android:layout_margin="15dp"/>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

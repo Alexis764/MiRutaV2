@@ -10,6 +10,7 @@
     <!--Paleta de colores-->
     <color name="background">#0F3D59</color>
     <color name="background_cards">#0E6CA6</color>
+    <color name="background_admin">#0596F2</color>
     <color name="accent">#FF9500</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

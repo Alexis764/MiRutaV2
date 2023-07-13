@@ -59,7 +59,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleRoute"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintVertical_bias="0.01"
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/btnListRoute"
@@ -73,7 +74,8 @@
             android:text="Lista"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_list"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:id="@+id/titleStop"
@@ -103,7 +105,8 @@
             android:text="Agregar"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_add"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/btnListStop"
@@ -117,7 +120,8 @@
             android:text="Lista"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_list"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
 
         <TextView
@@ -149,7 +153,8 @@
             android:text="Agregar"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_add"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/btnListUser"
@@ -163,7 +168,8 @@
             android:text="Lista"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_list"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
 
         <TextView
@@ -194,7 +200,8 @@
             android:text="Agregar"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_add"
-            android:background="@drawable/btn_admin"/>
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
 
         <Button
             android:id="@+id/btnListBus"
@@ -208,8 +215,9 @@
             android:text="Lista"
             android:theme="@style/Theme.MiRutaV2.botones"
             android:drawableTop="@drawable/ic_list"
-            android:background="@drawable/btn_admin"/>
-        
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
