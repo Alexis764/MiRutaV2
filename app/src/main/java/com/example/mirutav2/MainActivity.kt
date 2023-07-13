@@ -2,19 +2,17 @@ package com.example.mirutav2
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -30,19 +28,16 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
-import kotlin.concurrent.thread
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_credentials")
-
 class MainActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        const val URLBASE = "http://192.168.0.6:8080"
+        const val URLBASE = "http://192.168.20.23:8080"
         const val IDUSU = "idUsu"
 
-        const val EMAILCREDENTIAL = "emailCredential"
-        const val PASSWORDCREDENTIAL = "passwordCredential"
+        const val IDUSUCREDENTIAL = "idUsuCredential"
     }
 
 
@@ -59,10 +54,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnActivityRegister: TextView
 
-
-
-    // Variable para Tema
-    private lateinit var sp : SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,10 +74,11 @@ class MainActivity : AppCompatActivity() {
     //Funcion que comprobaria las user_credentials para iniciar sesion automaticamente
     private fun initCredentials() {
         CoroutineScope(Dispatchers.IO).launch {
-            getCredentials().filter { firstTime }.collect{userCredentialModel ->
-                if (userCredentialModel != null) {
-                    if (userCredentialModel.email.isNotEmpty() && userCredentialModel.password.isNotEmpty()) {
-                        queue.add(loginUser(userCredentialModel.email, userCredentialModel.password))
+            getCredentials().filter { firstTime }.collect{ credentialIdUsu ->
+                if (credentialIdUsu != null) {
+                    val idNeutral: Long = 0
+                    if (credentialIdUsu != idNeutral){
+                        startHome(credentialIdUsu)
                     }
                 }
                 firstTime = false
@@ -141,13 +133,16 @@ class MainActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             Log.e("loginUsuario_JSON", e.toString())
         }
+
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parameters, {response ->
             if (response.getBoolean("acceso")) {
+                val idUsu = response.getLong("idUsu")
+
                 CoroutineScope(Dispatchers.IO).launch {
-                    saveCredentials(EMAILCREDENTIAL, email)
-                    saveCredentials(PASSWORDCREDENTIAL, password)
+                    saveCredentials(IDUSUCREDENTIAL, idUsu)
                 }
-                startHome(response.getLong("idUsu"))
+
+                startHome(idUsu)
 
             } else {
                 Toast.makeText(this, "Email o password incorrectos", Toast.LENGTH_SHORT).show()
@@ -172,19 +167,16 @@ class MainActivity : AppCompatActivity() {
 
     //Funciones para manejar los datos de user_credentials con datastore preference
     //Funcion para guardar el email y password
-    private suspend fun saveCredentials(key: String, value: String) {
+    private suspend fun saveCredentials(key: String, value: Long) {
         dataStore.edit {
-            it[stringPreferencesKey(key)] = value
+            it[longPreferencesKey(key)] = value
         }
     }
 
     //Funcion para retornar los datos guardados
-    private fun getCredentials(): Flow<UserCredentialModel?> {
+    private fun getCredentials(): Flow<Long?> {
         return dataStore.data.map {
-            UserCredentialModel(
-                email = it[stringPreferencesKey(EMAILCREDENTIAL)].orEmpty(),
-                password = it[stringPreferencesKey(PASSWORDCREDENTIAL)].orEmpty()
-            )
+            it[longPreferencesKey(IDUSUCREDENTIAL)]
         }
     }
 
