@@ -10,6 +10,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -18,10 +19,9 @@ import com.android.volley.toolbox.Volley
 import com.example.mirutav2.R
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.home.BusFragment.Companion.PLACABUS
-import com.example.mirutav2.home.HomeActivity
 import com.example.mirutav2.home.HomeActivity.Companion.userDriverId
-import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.home.RouteFragment.Companion.IDRUT
+import com.example.mirutav2.home.bus.BusModel
 import com.example.mirutav2.home.stop.StopModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -29,10 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONException
@@ -56,15 +53,20 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Variables para paradas
     private var stopList = ArrayList<StopModel>()
-    private var markerList = mutableListOf<Marker>()
+    private var markerStopList = mutableListOf<Marker>()
 
     //Variables para giros
     private var twistsList = ArrayList<TwistsModel>()
+
+    //Variables para buses
+    private var busList = ArrayList<BusModel>()
+    private var markerBusList = mutableListOf<Marker>()
 
 
 
     //Variable para manejo de maps
     private lateinit var map: GoogleMap
+    private lateinit var customInfoWindowAdapter: CustomInfoWindowAdapter
 
 
 
@@ -93,11 +95,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         timerLocation = object : CountDownTimer(10000, 1000) {
             override fun onTick(time: Long) {
-
+                return
             }
 
             override fun onFinish() {
-                if (isLocationPermissionGranted()) getLastKnownLocation() else requestLocationPermission()
+                if (placaBus.isNotEmpty()) {
+                    if (isLocationPermissionGranted()) getLastKnownLocation() else requestLocationPermission()
+
+                } else {
+                    markerBusList.forEach { it.remove() }
+                    busList.clear()
+                    queue.add(getBusRoute())
+                }
+
                 timerLocation.start()
             }
         }
@@ -115,7 +125,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
             map.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(coordinates, 14f),
-                4000,
+                2000,
                 null
             )
         }
@@ -135,10 +145,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun initUi() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
-
-        if (placaBus.isNotEmpty()) {
-            timerLocation.start()
-        }
+        timerLocation.start()
     }
 
 
@@ -148,7 +155,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         map = googleMap
         queue.add(getStopsRoute())
         queue.add(getTwistsRoute())
+        queue.add(getBusRoute())
         enableLocation()
+
+        customInfoWindowAdapter = CustomInfoWindowAdapter(this)
+        map.setInfoWindowAdapter(customInfoWindowAdapter)
     }
 
 
@@ -166,7 +177,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 i++
             }
 
-            createMarkers(stopList)
+            createStopMarkers(stopList)
 
         }, {error ->
             Log.e("Volley_getStops_map", error.toString())
@@ -195,11 +206,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Funcion para crear un marcador por cada parada
-    private fun createMarkers(stopList: ArrayList<StopModel>) {
+    private fun createStopMarkers(stopList: ArrayList<StopModel>) {
         stopList.forEach {
             val coordinates = LatLng(it.latitudPar, it.longitudPar)
-            val marker = map.addMarker(MarkerOptions().position(coordinates).title(it.nombrePar))
-            if (marker != null) markerList.add(marker)
+            val marker = map.addMarker(MarkerOptions()
+                .position(coordinates)
+                .title(it.nombrePar)
+            )
+            marker?.tag = it.imgPar
+            if (marker != null) markerStopList.add(marker)
         }
     }
 
@@ -251,7 +266,63 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             latLngTwists.add(LatLng(it.latitudGir, it.longitudGir))
         }
 
-        map.addPolyline(PolylineOptions().addAll(latLngTwists))
+        map.addPolyline(PolylineOptions()
+            .addAll(latLngTwists)
+            .width(20f)
+            .color(ContextCompat.getColor(this, R.color.background))
+            .startCap(RoundCap())
+            .endCap(RoundCap())
+        )
+    }
+
+
+
+    //Funciones para crear los marcadores con los buses
+    //Funcion que trae la informacion de los buses
+    private fun getBusRoute(url: String = "$URLBASE/bus/listarRut/$idRut"): StringRequest {
+        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
+            val jsonArray = JSONArray(response)
+
+            var i = 0
+            val sizeArray = jsonArray.length()
+            while (i < sizeArray) {
+                busList.add(createBus(jsonArray[i] as JSONObject))
+                i++
+            }
+
+            createBusMarkers(busList)
+
+        }, {error ->
+            Log.e("Volley_getStops_map", error.toString())
+        })
+
+        return stringRequest
+    }
+
+    //Funcion para crear una parada
+    private fun createBus(jsonBus: JSONObject): BusModel {
+        val placaBus = jsonBus.getString("placaBus")
+        val longitudBus = jsonBus.getDouble("longitudBus")
+        val latitudBus = jsonBus.getDouble("latitudBus")
+
+        return BusModel(
+            placaBus,
+            longitudBus,
+            latitudBus
+        )
+    }
+
+    //Funcion para crear un marcador por cada parada
+    private fun createBusMarkers(busList: ArrayList<BusModel>) {
+        busList.forEach {
+            val coordinates = LatLng(it.latitudBus, it.longitudBus)
+            val marker = map.addMarker(MarkerOptions()
+                .position(coordinates)
+                .title(it.placaBus)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.markerbus))
+            )
+            if (marker != null) markerBusList.add(marker)
+        }
     }
 
 
@@ -380,7 +451,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             Log.e("sendLastLocation_JSON", e.toString())
         }
 
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parameters, {response ->
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.PUT, url, parameters, {response ->
             Toast.makeText(this, response.getString("respuesta"), Toast.LENGTH_SHORT).show()
 
         }, {error ->
