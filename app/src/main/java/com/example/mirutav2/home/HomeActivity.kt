@@ -1,11 +1,17 @@
 package com.example.mirutav2.home
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -14,14 +20,21 @@ import com.example.mirutav2.MainActivity.Companion.IDUSU
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
 import com.google.android.material.navigationrail.NavigationRailView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 
+val Context.dataStoreUserInfo: DataStore<Preferences> by preferencesDataStore(name = "user_name")
 class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
         lateinit var userModel: UserModel
         var userDriverId: Long = 0
+
+        const val USUNAMEPREFERENCE = "usuNamePreference"
+        const val USUEMAILPREFERENCE = "usuEmailPreference"
     }
 
 
@@ -94,6 +107,11 @@ class HomeActivity : AppCompatActivity() {
 
         userModel = UserModel(idUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
         setMenuVisibility(userModel.tipoUsuario)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            saveUserInfo(USUNAMEPREFERENCE, userModel.nombreUsu)
+            saveUserInfo(USUEMAILPREFERENCE, userModel.correoUsu)
+        }
     }
 
     //Funcion para cambiar la visibilidad de la opcion de administrador en el menu de navegacion
@@ -130,6 +148,17 @@ class HomeActivity : AppCompatActivity() {
 
         return stringRequest
     }
+
+
+
+    //Funciones para manejar los datos de user_name con datastore preference
+    //Funcion para guardar el nombre y el email del usuario
+    private suspend fun saveUserInfo(key: String, value: String) {
+        dataStoreUserInfo.edit {
+            it[stringPreferencesKey(key)] = value
+        }
+    }
+
 
 
 }

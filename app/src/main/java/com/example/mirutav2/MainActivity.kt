@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //Funciones para manejar los datos de user_credentials con datastore preference
-    //Funcion para guardar el email y password
+    //Funcion para guardar el id del usuario
     private suspend fun saveCredentials(key: String, value: Long) {
         dataStore.edit {
             it[longPreferencesKey(key)] = value
