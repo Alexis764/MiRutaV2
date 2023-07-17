@@ -74,10 +74,10 @@ class UpdateUserActivity : AppCompatActivity() {
 
         try {
             parametros.put("correoUsu", UpdateDataEmail.text.toString())
-            parametros.put("contrasenaUsu", UpdateDataPassword.text.toString())
+            parametros.put("contraseniaUsu", UpdateDataPassword.text.toString())
             parametros.put("nombreUsu", UpdateDataName.text.toString())
             parametros.put("fotoUsu", UpdateDataPhoto.text.toString())
-            parametros.put("rol", UpdateDataRol.text.toString())
+            parametros.put("tipoUsuario", UpdateDataRol.text.toString())
             
         }catch (e:JSONException){
             Log.e("UpdateUserJson", e.toString())
