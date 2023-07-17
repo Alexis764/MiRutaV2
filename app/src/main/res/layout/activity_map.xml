@@ -7,6 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".map.MapActivity">
 
+    <LinearLayout
+        android:id="@+id/tbMap"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/background">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/content_main_logo">
+        </ImageView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/main_title"
+            android:textSize="25sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/white">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/btnCloseMapUser"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="13dp"
+            android:contentDescription="@string/content_img_close"
+            android:src="@drawable/ic_close"
+            app:tint="@color/white">
+        </ImageView>
+
+    </LinearLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:layout_width="0dp"
@@ -14,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tbMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:layout="@layout/fragment_bus">
     </androidx.fragment.app.FragmentContainerView>
@@ -29,7 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/accent"
         app:fabSize="mini"
-        android:src="@drawable/ic_route">
+        android:src="@drawable/ic_route"
+        android:contentDescription="@string/content_btnCenterRoute">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,18 @@
     <string name="btnVerificationPin">Comprobar pin</string>
 
 
+    <!--MapUser activity-->
+    <string name="content_btnCenterRoute">Boton centrar ruta</string>
+
+
     <!--Home-->
+    <string name="email_user">example@gmail.com</string>
+
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="dark_mode_description">Activa para un cambio visual</string>
+
+    <string name="content_img_user">Imagen del usuario</string>
+    <string name="content_img_dark_mode">Imagen de modo oscuro</string>
 
 
     <!--Menu-->

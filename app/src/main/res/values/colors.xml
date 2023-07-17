@@ -20,4 +20,5 @@
     <color name="primary">#F2B705</color>
     <color name="secondary">#F2CB05</color>
 
+    <color name="text_description">#575555</color>
 </resources>

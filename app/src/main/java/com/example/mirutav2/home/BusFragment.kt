@@ -42,7 +42,7 @@ class BusFragment : Fragment(), RouteBusListener {
 
     //Variables para componentes
     private lateinit var tvBusPlate: TextView
-    private lateinit var tvIdUsu: TextView
+    private lateinit var tvWelcomeDriver: TextView
 
 
 
@@ -71,7 +71,7 @@ class BusFragment : Fragment(), RouteBusListener {
     //Conexion de componentes a vista
     private fun initComponent(rootView: View) {
         tvBusPlate = rootView.findViewById(R.id.tvBusPlate)
-        tvIdUsu = rootView.findViewById(R.id.tvIdUsu)
+        tvWelcomeDriver = rootView.findViewById(R.id.tvWelcomeDriver)
 
         rvBus = rootView.findViewById(R.id.rvBus)
 
@@ -161,7 +161,7 @@ class BusFragment : Fragment(), RouteBusListener {
     //Funcion para asginar texto de informacion a los textview de la interfaz
     private fun setTextBusInfo() {
         tvBusPlate.text = getString(R.string.plateBus, busModel.placaBus)
-        tvIdUsu.text = getString(R.string.welcome, userModel.nombreUsu)
+        tvWelcomeDriver.text = getString(R.string.welcome, userModel.nombreUsu)
     }
 
 
