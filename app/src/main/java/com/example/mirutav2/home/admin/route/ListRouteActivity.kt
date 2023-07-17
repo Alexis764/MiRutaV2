@@ -1,5 +1,6 @@
 package com.example.mirutav2.home.admin.route
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
+import com.example.mirutav2.home.admin.user.UpdateUserActivity
 import com.example.mirutav2.home.route.RouteModel
 import org.json.JSONArray
 import org.json.JSONException
@@ -103,7 +105,9 @@ class ListRouteActivity : AppCompatActivity(), RouteAdminListener {
     }
 
     override fun onBtnUpdateClicked(routeModel: RouteModel) {
-
+        val intent = Intent(this, UpdateUserActivity::class.java)
+        intent.putExtra("routeId", routeModel.idRut)
+        startActivity(intent)
     }
 
     override fun onBtnDeleteClicked(routeModel: RouteModel) {

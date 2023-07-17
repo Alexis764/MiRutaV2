@@ -27,7 +27,7 @@
                 android:id="@+id/item_admin_identificationUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Identificacion"/>
+                android:text="ID"/>
 
             <TextView
                 style="@style/Theme.MiRutaV2.cardItemsAdminText"

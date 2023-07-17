@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -33,7 +34,7 @@ class UpdateUserActivity : AppCompatActivity() {
     private lateinit var UpdateDataRol : EditText
 
     // Variable Botones
-    private lateinit var btnCloseUser : Button
+    private lateinit var btnCloseUser : ImageButton
     private lateinit var btnUpdateUserData : Button
 
     // Recoleccion de datos
@@ -62,7 +63,7 @@ class UpdateUserActivity : AppCompatActivity() {
     // Actualizar Datos
     private fun updateData() {
         btnUpdateUserData.setOnClickListener {
-            val url = URLBASE +"/ActualizarUsuario/"+UpdateDataEmail.text.toString()
+            val url = "$URLBASE/usuario/actualizar"
             val queue = Volley.newRequestQueue(this)
             queue.add(updateUser(url))
         }
@@ -71,8 +72,10 @@ class UpdateUserActivity : AppCompatActivity() {
     // Funcion actualizar datos
     private fun updateUser(url : String) : JsonObjectRequest {
         val parametros = JSONObject()
+        val userId = intent.getLongExtra("userId", -1)
 
         try {
+            parametros.put("idUsu", userId)
             parametros.put("correoUsu", UpdateDataEmail.text.toString())
             parametros.put("contraseniaUsu", UpdateDataPassword.text.toString())
             parametros.put("nombreUsu", UpdateDataName.text.toString())
@@ -83,7 +86,7 @@ class UpdateUserActivity : AppCompatActivity() {
             Log.e("UpdateUserJson", e.toString())
         }
 
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, parametros,
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.PUT, url, parametros,
             { response ->
                 Toast.makeText(
                     UpdateDataEmail.context,

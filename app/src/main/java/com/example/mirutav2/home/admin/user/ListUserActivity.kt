@@ -1,5 +1,6 @@
 package com.example.mirutav2.home.admin.user
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.example.mirutav2.R
 import com.example.mirutav2.home.HomeActivity
 import com.example.mirutav2.home.HomeActivity.Companion.userModel
 import com.example.mirutav2.home.UserModel
+import com.example.mirutav2.home.admin.bus.ListBusActivity
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -56,7 +58,7 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
 
     // Funcion crear Usuario
     private fun createUser(jsonUser : JSONObject) : UserModel {
-        val identificacionUsu = jsonUser.getLong("identificacionUsu")
+        val idUsu = jsonUser.getLong("idUsu")
         val correoUsu = jsonUser.getString("correoUsu")
         val contraseniaUsu = jsonUser.getString("contraseniaUsu")
         val nombreUsu = jsonUser.getString("nombreUsu")
@@ -64,7 +66,7 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
         val tipoUsuario = jsonUser.getInt("tipoUsuario")
 
         return UserModel(
-            identificacionUsu,
+            idUsu,
             correoUsu,
             contraseniaUsu,
             nombreUsu,
@@ -108,7 +110,9 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
     }
 
     override fun onBtnUpdateClicked(userModel: UserModel) {
-
+        val intent = Intent(this, UpdateUserActivity::class.java)
+        intent.putExtra("userId", userModel.idUsu)
+        startActivity(intent)
     }
 
     override fun onBtnDeleteClicked(userModel: UserModel) {
@@ -122,7 +126,7 @@ class ListUserActivity : AppCompatActivity(), UserAdminListener {
         val parametros = JSONObject()
 
         try {
-            parametros.put("identificacionUsu", userModel.idUsu.toString())
+            parametros.put("idUsu", userModel.idUsu.toString())
         } catch (e: JSONException) {
             Log.e("DeleteUserJson", e.toString())
         }
