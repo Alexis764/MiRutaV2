@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        lateinit var userModel: UserModel
+        var userModel = UserModel(0, "", "", "", "", 1)
         var userDriverId: Long = 0
 
         const val USUNAMEPREFERENCE = "usuNamePreference"
@@ -62,6 +62,7 @@ class HomeActivity : AppCompatActivity() {
         queue.add(getUser())
 
     }
+
 
 
     //Conexion de componentes a vista
@@ -117,18 +118,15 @@ class HomeActivity : AppCompatActivity() {
     //Funcion para cambiar la visibilidad de la opcion de administrador en el menu de navegacion
     private fun setMenuVisibility(typeUser: Int) {
         when (typeUser) {
-            1 -> { //User
-                nrvHome.menu.getItem(4).isVisible = false
-                nrvHome.menu.getItem(5).isVisible = false
-
-            }
             2 -> { //Driver
-                nrvHome.menu.getItem(4).isVisible = false
+                nrvHome.menu.getItem(5).isEnabled = true
+                nrvHome.menu.getItem(5).isVisible = true
                 queue.add(getDriverUser())
 
             }
             0 -> { //Admin
-                nrvHome.menu.getItem(5).isVisible = false
+                nrvHome.menu.getItem(4).isEnabled = true
+                nrvHome.menu.getItem(4).isVisible = true
             }
         }
     }
@@ -143,7 +141,7 @@ class HomeActivity : AppCompatActivity() {
             userDriverId = jsonObject.getLong("identificacionCon")
 
         }, {error ->
-            Log.e("Volley_getUser", error.toString())
+            Log.e("Volley_getDriverUser", error.toString())
         })
 
         return stringRequest

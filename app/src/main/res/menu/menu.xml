@@ -31,12 +31,16 @@
     <item
         android:id="@+id/adminFragment"
         android:icon="@drawable/ic_admin"
+        android:visible="false"
+        android:enabled="false"
         android:title="@string/admin">
     </item>
 
     <item
         android:id="@+id/busFragment"
         android:icon="@drawable/ic_bus"
+        android:visible="false"
+        android:enabled="false"
         android:title="@string/bus">
     </item>
 

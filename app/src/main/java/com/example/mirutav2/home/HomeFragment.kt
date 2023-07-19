@@ -1,6 +1,5 @@
 package com.example.mirutav2.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,24 +9,20 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.example.mirutav2.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import androidx.lifecycle.lifecycleScope
 import com.example.mirutav2.home.HomeActivity.Companion.USUEMAILPREFERENCE
 import com.example.mirutav2.home.HomeActivity.Companion.USUNAMEPREFERENCE
 import com.google.android.material.switchmaterial.SwitchMaterial
+import kotlinx.coroutines.flow.filter
 
-val Context.dataStoreTheme: DataStore<Preferences> by preferencesDataStore(name = "theme")
 class HomeFragment : Fragment() {
 
     //Constantes
@@ -44,6 +39,11 @@ class HomeFragment : Fragment() {
 
 
 
+    //Variables
+    private var firstTime = true
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,26 +52,10 @@ class HomeFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
         initComponent(rootView)
-        initConfiguration()
+        initListeners()
         initUi()
 
         return rootView
-    }
-
-
-
-    //Funcion que restaurar la configuracion del usuario
-    private fun initConfiguration() {
-        lifecycleScope.launch {
-            getSettings().collect { theme ->
-                requireActivity().runOnUiThread {
-                    if (switchDarkMode.isChecked != theme) {
-                        switchDarkMode.isChecked = theme
-                        switchDarkMode.jumpDrawablesToCurrentState() // Detener cualquier animación en curso
-                    }
-                }
-            }
-        }
     }
 
 
@@ -85,61 +69,54 @@ class HomeFragment : Fragment() {
 
 
 
-    //Iniciar los componentes de la interfaz respecto a valores predeterminados
-    private fun initUi() {
+    //Funciones click de componentes
+    private fun initListeners() {
         switchDarkMode.setOnCheckedChangeListener { _, value ->
-            if (value) {
-                enableDarkMode()
-            } else {
-                disableDarkMode()
-            }
+            changeDarkMode(value)
 
             CoroutineScope(Dispatchers.IO).launch {
                 saveTheme(KEYTHEMEDARK, value)
             }
         }
+    }
 
+
+
+    //Iniciar los componentes de la interfaz respecto a valores predeterminados
+    private fun initUi() {
         CoroutineScope(Dispatchers.IO).launch {
-            getUserInfo().collect{userModelInfo ->
+            getUserInfo().filter { firstTime }.collect{userModelInfo ->
                 if (userModelInfo != null) {
                     requireActivity().runOnUiThread {
                         tvWelcomeUser.text = getString(R.string.welcome, userModelInfo.nombreUsu)
                         tvEmailUser.text = userModelInfo.correoUsu
+
+                        if (userModelInfo.correoUsu.isNotEmpty()) {
+                            changeDarkMode(switchDarkMode.isChecked)
+                            firstTime = !firstTime
+                        }
+
+                        switchDarkMode.isChecked = userModelInfo.darkMode
                     }
                 }
             }
         }
+
     }
 
 
 
     //Funciones para el manejo del modo oscuro
-    //Funcion para guardar el estado de la opcion del usuario
+    //Funcion para guardar el estado de la opcion del usuario del modo oscuro
     private suspend fun saveTheme(key: String, value: Boolean) {
-        val context = requireContext()
-
-        context.dataStoreTheme.edit { preferences ->
+        tvWelcomeUser.context.dataStoreUserInfo.edit { preferences ->
             preferences[booleanPreferencesKey(key)] = value
         }
     }
 
-    //Funcion para retornar la opcion del usuario
-    private fun getSettings(): Flow<Boolean> {
-        val context = requireContext()
-
-        return context.dataStoreTheme.data.map { preferences ->
-            preferences[booleanPreferencesKey(KEYTHEMEDARK)] ?: false
-        }
-    }
-
-    //Funcion para activar el modo oscuro
-    private fun enableDarkMode() {
-        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-    }
-
-    //Funcion para desactivar el modo oscuro
-    private fun disableDarkMode() {
-        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+    //Funcion para cambiar el modo oscuro
+    private fun changeDarkMode(value: Boolean) {
+        if (value) AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES) else AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
     }
 
 
@@ -149,8 +126,12 @@ class HomeFragment : Fragment() {
         return tvWelcomeUser.context.dataStoreUserInfo.data.map {
             UserModelInfo(
                 correoUsu = it[stringPreferencesKey(USUEMAILPREFERENCE)].orEmpty(),
-                nombreUsu = it[stringPreferencesKey(USUNAMEPREFERENCE)].orEmpty()
+                nombreUsu = it[stringPreferencesKey(USUNAMEPREFERENCE)].orEmpty(),
+                darkMode = it[booleanPreferencesKey(KEYTHEMEDARK)] ?: false
             )
         }
     }
+
+
+
 }
