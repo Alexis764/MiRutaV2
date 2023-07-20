@@ -35,6 +35,8 @@
     <string name="content_img_user">Imagen del usuario</string>
     <string name="content_img_dark_mode">Imagen de modo oscuro</string>
 
+    <string name="uploadImage">Subir imagen</string>
+
     <string name="logout">Cerrar sesion</string>
     <string name="titleDialogLogout">¿Salir de tu cuenta?</string>
     <string name="cancelLogout">Cancelar</string>

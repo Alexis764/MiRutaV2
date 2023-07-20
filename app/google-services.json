@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "835969101497",
+    "project_id": "miruta-380801",
+    "storage_bucket": "miruta-380801.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835969101497:android:fe3f4c981692d4cb6af568",
+        "android_client_info": {
+          "package_name": "com.example.mirutav2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835969101497-q9dkn9msmo9tllhaddugqhsuruvlnid9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQdIJG1rki-X0pCgmdTBz-b2xKbo2vPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835969101497-q9dkn9msmo9tllhaddugqhsuruvlnid9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,10 @@
 package com.example.mirutav2.home
 
+import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
@@ -24,14 +27,25 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.mirutav2.MainActivity
+import com.example.mirutav2.MainActivity.Companion.FOTOUSUPREFERENCE
 import com.example.mirutav2.dataStoreUserInfo
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 
 val Context.dataStoreTheme: DataStore<Preferences> by preferencesDataStore(name = "theme")
 class HomeFragment : Fragment() {
@@ -39,6 +53,8 @@ class HomeFragment : Fragment() {
     //Constantes
     companion object {
         const val KEYTHEMEDARK = "key_theme"
+
+        const val COD_SEL_IMAGE = 300
     }
 
 
@@ -48,6 +64,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvEmailUser: TextView
     private lateinit var ivPhotoUser: ImageView
     private lateinit var switchDarkMode: SwitchMaterial
+    private lateinit var btnUploadImage: Button
     private lateinit var btnLogout: Button
 
     //Variables para componentes del dialog
@@ -58,6 +75,17 @@ class HomeFragment : Fragment() {
 
     //Variables
     private var firstTime = true
+    private lateinit var queue: RequestQueue
+
+
+
+    //Variables firebase
+    private lateinit var mFireStore: FirebaseFirestore
+    private lateinit var storageReference: StorageReference
+    private val storagePath = "user/*"
+
+    private lateinit var imageUrl: Uri
+    private val photo = "photo"
 
 
 
@@ -83,7 +111,13 @@ class HomeFragment : Fragment() {
         tvEmailUser = rootView.findViewById(R.id.tvEmailUser)
         ivPhotoUser = rootView.findViewById(R.id.ivPhotoUser)
         switchDarkMode = rootView.findViewById(R.id.switchDarkMode)
+        btnUploadImage = rootView.findViewById(R.id.btnUploadImage)
         btnLogout = rootView.findViewById(R.id.btnLogout)
+
+        queue = Volley.newRequestQueue(this.context)
+
+        mFireStore = FirebaseFirestore.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
     }
 
 
@@ -95,6 +129,10 @@ class HomeFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 saveTheme(KEYTHEMEDARK, value)
             }
+        }
+
+        btnUploadImage.setOnClickListener {
+            openGallery()
         }
 
         btnLogout.setOnClickListener {
@@ -109,6 +147,7 @@ class HomeFragment : Fragment() {
                 }
                 val intent = Intent(tvWelcomeUser.context, MainActivity::class.java)
                 startActivity(intent)
+                requireActivity().finish()
             }
             btnCancelLogout.setOnClickListener {
                 dialog.hide()
@@ -187,6 +226,80 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+
+    //Funciones para subir foto a firebase
+    //Funcion para abrir galeria
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, COD_SEL_IMAGE)
+    }
+
+    //Funcion para recibir el resultado de la imagen
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == COD_SEL_IMAGE) {
+                imageUrl = data?.data!!
+                uploadImage(imageUrl)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    //Funcion para subir la imagen a firebase
+    private fun uploadImage(imageUrl: Uri) {
+        val ruteStoragePhoto = storagePath + "" + photo + "" + userModel.correoUsu + "" + userModel.idUsu
+        val reference = storageReference.child(ruteStoragePhoto)
+
+        reference.putFile(imageUrl).addOnSuccessListener { taskSnapshot ->
+            val uriTask = taskSnapshot.storage.downloadUrl
+            while (!uriTask.isSuccessful) {
+                if (uriTask.isSuccessful) {
+                    uriTask.addOnSuccessListener { uri ->
+                        val uriDownload = uri.toString()
+                        loadPhotoUser(uriDownload)
+                        queue.add(updateImageUser(uriDownload))
+                        CoroutineScope(Dispatchers.IO).launch { updateImageUserInfo(uriDownload) }
+                        Toast.makeText(tvWelcomeUser.context, "Foto actualizada", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    //Funcion que guarda la imagen en preference
+    private suspend fun updateImageUserInfo(uriDownload: String) {
+        tvWelcomeUser.context.dataStoreUserInfo.edit {
+            it[stringPreferencesKey(FOTOUSUPREFERENCE)] = uriDownload
+        }
+    }
+
+    //Funcion para actualizar la url de la imagen en la api
+    private fun updateImageUser(uriDownload: String, url: String = "${MainActivity.URLBASE}/usuario/actualizar"): JsonObjectRequest {
+        val parameters = JSONObject()
+
+        try {
+            parameters.put("idUsu", userModel.idUsu)
+            parameters.put("correoUsu", userModel.correoUsu)
+            parameters.put("contraseniaUsu", userModel.contraseniaUsu)
+            parameters.put("nombreUsu", userModel.nombreUsu)
+            parameters.put("fotoUsu", uriDownload)
+            parameters.put("tipoUsuario", userModel.tipoUsuario)
+
+        } catch (e: JSONException) {
+            Log.e("updateImageUser_JSON", e.toString())
+        }
+
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.PUT, url, parameters, { response ->
+            Toast.makeText(tvWelcomeUser.context, response.getString("respuesta"), Toast.LENGTH_SHORT).show()
+
+        }, {error ->
+            Log.e("updateImageUser_REQUEST", error.toString())
+        })
+
+        return jsonObjectRequest
+    }
 
 
 }

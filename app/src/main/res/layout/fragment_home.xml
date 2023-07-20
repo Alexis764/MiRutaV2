@@ -121,6 +121,18 @@
             android:background="@color/accent">
         </com.google.android.material.divider.MaterialDivider>
 
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/uploadImage"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/accent"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="10dp">
+        </Button>
+
     </LinearLayout>
 
     <Button
