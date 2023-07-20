@@ -135,6 +135,8 @@ class MapActivityAdmin : AppCompatActivity(), OnMapReadyCallback {
                             iedLinkImageStopAddIn.isNotEmpty()) {
 
                             queue.add(saveStop(iedAddressStopAddIn, iedNameStopAddIn, iedLatStopAddIn, iedLngStopAddIn, iedLinkImageStopAddIn))
+                            dialog.hide()
+                            onBackPressed()
 
                         } else {
                             Toast.makeText(this, "Debes completar todos los campos", Toast.LENGTH_SHORT).show()
