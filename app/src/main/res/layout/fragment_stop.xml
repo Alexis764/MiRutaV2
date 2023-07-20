@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_destination"
             app:startIconTint="@color/black"
-            app:boxStrokeColor="@color/black"
+            app:boxStrokeColor="@color/accent"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/black"
             app:boxBackgroundColor="@color/background_cards">
@@ -41,13 +41,32 @@
 
     </LinearLayout>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shimmer_auto_start="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/shimmerStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_stop"></include>
+            <include layout="@layout/shimmer_stop"></include>
+            <include layout="@layout/shimmer_stop"></include>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStops"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginHorizontal="10dp">
+        android:layout_marginHorizontal="10dp"
+        android:visibility="gone">
     </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

@@ -21,4 +21,7 @@
     <color name="secondary">#F2CB05</color>
 
     <color name="text_description">#575555</color>
+
+    <color name="shimmer">#C8C8C9</color>
+    <color name="shimmer_background">#8C8C8E</color>
 </resources>

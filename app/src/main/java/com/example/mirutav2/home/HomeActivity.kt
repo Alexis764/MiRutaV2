@@ -1,40 +1,36 @@
 package com.example.mirutav2.home
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.mirutav2.MainActivity.Companion.IDUSU
+import com.example.mirutav2.MainActivity
 import com.example.mirutav2.MainActivity.Companion.URLBASE
 import com.example.mirutav2.R
+import com.example.mirutav2.dataStoreUserInfo
 import com.google.android.material.navigationrail.NavigationRailView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
-val Context.dataStoreUserInfo: DataStore<Preferences> by preferencesDataStore(name = "user_name")
 class HomeActivity : AppCompatActivity() {
 
     //Constantes
     companion object {
-        var userModel = UserModel(0, "", "", "", "", 1)
+        lateinit var userModel: UserModel
         var userDriverId: Long = 0
-
-        const val USUNAMEPREFERENCE = "usuNamePreference"
-        const val USUEMAILPREFERENCE = "usuEmailPreference"
     }
 
 
@@ -42,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
     //Variables
     private lateinit var navController: NavController
     private lateinit var queue: RequestQueue
-    private var idUsu: Long = 0
 
 
 
@@ -55,12 +50,25 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        idUsu = intent.extras?.getLong(IDUSU) ?: 0
 
+        initUserInfo()
         initComponent()
         initController()
-        queue.add(getUser())
 
+    }
+
+
+
+    //Funcion para retornar la informacion del usuario
+    private fun initUserInfo() {
+        CoroutineScope(Dispatchers.IO).launch {
+            getUserInfo().collect{ userModelPreference ->
+                if (userModelPreference != null) {
+                    userModel = userModelPreference
+                    runOnUiThread{ setMenuVisibility(userModel.tipoUsuario) }
+                }
+            }
+        }
     }
 
 
@@ -82,38 +90,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-
-    //Funciones para traer la informacion del usuario
-    private fun getUser(url: String = "$URLBASE/usuario/buscar/$idUsu"): StringRequest {
-        val stringRequest = StringRequest(Request.Method.GET, url, {response ->
-            val jsonObject = JSONObject(response)
-
-            createUser(jsonObject)
-
-        }, {error ->
-            Log.e("Volley_getUser", error.toString())
-        })
-
-        return stringRequest
-    }
-
-    //Funcion para crear un usuario con una data class
-    private fun createUser(jsonObject: JSONObject) {
-        val idUsu = jsonObject.getLong("idUsu")
-        val correoUsu = jsonObject.getString("correoUsu")
-        val contraseniaUsu = jsonObject.getString("contraseniaUsu")
-        val nombreUsu = jsonObject.getString("nombreUsu")
-        val fotoUsu = jsonObject.getString("fotoUsu")
-        val tipoUsuario = jsonObject.getInt("tipoUsuario")
-
-        userModel = UserModel(idUsu, correoUsu, contraseniaUsu, nombreUsu, fotoUsu, tipoUsuario)
-        setMenuVisibility(userModel.tipoUsuario)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            saveUserInfo(USUNAMEPREFERENCE, userModel.nombreUsu)
-            saveUserInfo(USUEMAILPREFERENCE, userModel.correoUsu)
-        }
-    }
 
     //Funcion para cambiar la visibilidad de la opcion de administrador en el menu de navegacion
     private fun setMenuVisibility(typeUser: Int) {
@@ -149,11 +125,17 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-    //Funciones para manejar los datos de user_name con datastore preference
-    //Funcion para guardar el nombre y el email del usuario
-    private suspend fun saveUserInfo(key: String, value: String) {
-        dataStoreUserInfo.edit {
-            it[stringPreferencesKey(key)] = value
+    //Funcion para retornar los datos guardados del usuario
+    private fun getUserInfo(): Flow<UserModel?> {
+        return dataStoreUserInfo.data.map { preference ->
+            UserModel(
+                idUsu = preference[longPreferencesKey(MainActivity.IDUSUPREFERENCE)] ?: 0,
+                correoUsu = preference[stringPreferencesKey(MainActivity.CORREOUSUPREFERENCE)].orEmpty(),
+                contraseniaUsu = preference[stringPreferencesKey(MainActivity.CONTRAUSUPREFERENCE)].orEmpty(),
+                nombreUsu = preference[stringPreferencesKey(MainActivity.NOMBREUSUPREFERENCE)].orEmpty(),
+                fotoUsu = preference[stringPreferencesKey(MainActivity.FOTOUSUPREFERENCE)].orEmpty(),
+                tipoUsuario = preference[intPreferencesKey(MainActivity.TIPOUSUPREFERENCE)] ?: 1
+            )
         }
     }
 

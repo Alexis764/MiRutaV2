@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_pin"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        style="@style/styleSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleDialogLogout">
+    </TextView>
+
+    <Button
+        android:id="@+id/btnLogoutCon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/accent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="5dp">
+    </Button>
+
+    <Button
+        android:id="@+id/btnCancelLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancelLogout"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/accent"
+        android:layout_marginHorizontal="30dp">
+    </Button>
+
+</LinearLayout>

@@ -11,7 +11,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="5dp">
 
         <ImageView
             android:id="@+id/ivPhotoStop"
@@ -19,7 +21,7 @@
             android:layout_height="100dp"
             tools:src="@drawable/ic_circle"
             android:contentDescription="@string/content_img_stop"
-            android:background="@color/white">
+            android:background="@color/background_cards">
         </ImageView>
 
         <LinearLayout

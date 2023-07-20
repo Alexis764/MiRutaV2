@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -30,6 +31,7 @@ import org.json.JSONObject
 class FavoriteFragment : Fragment(), RouteListener {
 
     //Variables para configurar recycler view
+    private lateinit var shimmerRouteFavorites: LinearLayoutCompat
     private lateinit var rvRoutesFavorite: RecyclerView
     private lateinit var routeAdapter: RouteAdapter
 
@@ -55,6 +57,7 @@ class FavoriteFragment : Fragment(), RouteListener {
 
     //Conexion de componentes a vista
     private fun initComponent(rootView: View) {
+        shimmerRouteFavorites = rootView.findViewById(R.id.shimmerRouteFavorites)
         rvRoutesFavorite = rootView.findViewById(R.id.rvRoutesFavorite)
         queue = Volley.newRequestQueue(this.context)
     }
@@ -121,6 +124,9 @@ class FavoriteFragment : Fragment(), RouteListener {
         routeAdapter = RouteAdapter(routeList, this)
         rvRoutesFavorite.layoutManager = LinearLayoutManager(this.context)
         rvRoutesFavorite.adapter = routeAdapter
+
+        shimmerRouteFavorites.visibility = View.GONE
+        rvRoutesFavorite.visibility = View.VISIBLE
     }
 
 
