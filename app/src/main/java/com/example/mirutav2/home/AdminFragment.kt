@@ -16,6 +16,7 @@ import com.example.mirutav2.home.admin.stop.AddStopActivity
 import com.example.mirutav2.home.admin.stop.ListStopActivity
 import com.example.mirutav2.home.admin.user.AddUserActivity
 import com.example.mirutav2.home.admin.user.ListUserActivity
+import com.example.mirutav2.map.MapActivityAdmin
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -109,7 +110,7 @@ class AdminFragment : Fragment() {
 
             // Botones Paradas
         btnAddStop.setOnClickListener{
-            val intent = Intent(this.context, AddStopActivity::class.java)
+            val intent = Intent(this.context, MapActivityAdmin::class.java)
             startActivity(intent)
         }
 

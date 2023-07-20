@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_email"
                 app:startIconTint="@color/black"
-                app:boxStrokeColor="@color/black"
+                app:boxStrokeColor="@color/accent"
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
                 app:boxBackgroundColor="@color/background_cards"
@@ -80,7 +80,7 @@
                 app:startIconTint="@color/black"
                 app:endIconMode="password_toggle"
                 app:endIconTint="@color/black"
-                app:boxStrokeColor="@color/black"
+                app:boxStrokeColor="@color/accent"
                 android:textColorHint="@color/black"
                 app:hintTextColor="@color/black"
                 app:boxBackgroundColor="@color/background_cards">

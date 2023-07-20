@@ -24,4 +24,5 @@
 
     <color name="shimmer">#C8C8C9</color>
     <color name="shimmer_background">#8C8C8E</color>
+    <color name="progress_backgroundAlpha">#838C8C8E</color>
 </resources>
