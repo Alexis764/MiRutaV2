@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,6 +61,7 @@ class RouteFragment : Fragment(), RouteListener {
 
 
     //Variables para configurar recycler view
+    private lateinit var shimmerRoute: LinearLayoutCompat
     private lateinit var rvRoutes: RecyclerView
     private lateinit var routeAdapter: RouteAdapter
 
@@ -93,6 +95,7 @@ class RouteFragment : Fragment(), RouteListener {
         iedDestinationRoute = rootView.findViewById(R.id.iedDestinationRoute)
         cvOpenSearch = rootView.findViewById(R.id.cvOpenSearch)
         ivRow = rootView.findViewById(R.id.ivRow)
+        shimmerRoute = rootView.findViewById(R.id.shimmerRoute)
         rvRoutes = rootView.findViewById(R.id.rvRoutes)
 
         queue = Volley.newRequestQueue(this.context)
@@ -227,7 +230,11 @@ class RouteFragment : Fragment(), RouteListener {
         routeAdapter = RouteAdapter(routeList, this)
         rvRoutes.layoutManager = LinearLayoutManager(this.context)
         rvRoutes.adapter = routeAdapter
+
         filterRoutes(iedStarRoute.text.toString(), iedDestinationRoute.text.toString())
+        shimmerRoute.visibility = View.GONE
+        rvRoutes.visibility = View.VISIBLE
+
     }
 
 

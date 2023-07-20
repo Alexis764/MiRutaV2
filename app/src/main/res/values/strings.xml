@@ -22,7 +22,26 @@
     <string name="btnVerificationPin">Comprobar pin</string>
 
 
+    <!--Map-->
+    <string name="content_btnCenterRoute">Boton centrar ruta</string>
+
+    <string name="content_btnAddStop">Boton añadir parada</string>
+
+
     <!--Home-->
+    <string name="email_user">example@gmail.com</string>
+
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="dark_mode_description">Activa para un cambio visual</string>
+
+    <string name="content_img_user">Imagen del usuario</string>
+    <string name="content_img_dark_mode">Imagen de modo oscuro</string>
+
+    <string name="uploadImage">Subir imagen</string>
+
+    <string name="logout">Cerrar sesion</string>
+    <string name="titleDialogLogout">¿Salir de tu cuenta?</string>
+    <string name="cancelLogout">Cancelar</string>
 
 
     <!--Menu-->
@@ -80,4 +99,17 @@
 
 
     <string name="content_img_rorNext">Imagen flecha</string>
+
+
+
+    <!--dialog stop-->
+    <string name="saveStop">Guardar parada</string>
+    <string name="addressStop">Direccion</string>
+    <string name="nameStop">Nombre</string>
+    <string name="latStop">Latitud</string>
+    <string name="lngStop">Longitud</string>
+    <string name="linkImageStop">Url imagen</string>
+
+
+
 </resources>

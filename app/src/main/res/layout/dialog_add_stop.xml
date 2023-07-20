@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_dialog_pin"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            style="@style/styleSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/saveStop">
+        </TextView>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_stop"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/accent"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedAddressStopAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/addressStop"
+                android:textColor="@color/black"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="7dp"
+            app:startIconDrawable="@drawable/ic_name"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/accent"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedNameStopAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nameStop"
+                android:textColor="@color/black"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_pinlatlon"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/accent"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedLatStopAdd"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/latitudeStop"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal">
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="7dp"
+            app:startIconDrawable="@drawable/ic_pinlatlon"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/accent"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedLngStopAdd"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/lngStop"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal">
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_link"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="@color/accent"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:boxBackgroundColor="@color/background_cards">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/iedLinkImageStopAdd"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/linkImageStop"
+                android:textColor="@color/black"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnUploadImageStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/uploadImage"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/accent">
+        </Button>
+
+
+        <Button
+            android:id="@+id/btnSaveStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/saveStop"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/accent"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="5dp">
+        </Button>
+
+
+        <Button
+            android:id="@+id/btnCloseSaveStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelLogout"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/accent"
+            android:layout_marginHorizontal="30dp">
+        </Button>
+
+
+    </LinearLayout>
+
+</FrameLayout>

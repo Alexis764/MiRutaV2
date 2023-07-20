@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -72,6 +73,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Variables para componentes
     private lateinit var btnCenterRoute: FloatingActionButton
+    private lateinit var btnCloseMapUser: ImageView
 
 
 
@@ -113,6 +115,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         btnCenterRoute = findViewById(R.id.btnCenterRoute)
+        btnCloseMapUser = findViewById(R.id.btnCloseMapUser)
     }
 
 
@@ -129,6 +132,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 null
             )
         }
+        btnCloseMapUser.setOnClickListener { onBackPressed() }
     }
 
 
@@ -321,6 +325,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 .title(it.placaBus)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.markerbus))
             )
+            marker?.tag = ""
             if (marker != null) markerBusList.add(marker)
         }
     }

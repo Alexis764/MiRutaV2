@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,7 @@ class StopFragment : Fragment(), StopListener {
 
 
     //Variables para configurar recyclerView
+    private lateinit var shimmerStop: LinearLayoutCompat
     private lateinit var rvStops: RecyclerView
     private lateinit var stopAdapter: StopAdapter
 
@@ -73,6 +75,7 @@ class StopFragment : Fragment(), StopListener {
     //Conexion de componentes a vista
     private fun initComponent(rootView: View) {
         iedNameStop = rootView.findViewById(R.id.iedNameStop)
+        shimmerStop = rootView.findViewById(R.id.shimmerStop)
         rvStops = rootView.findViewById(R.id.rvStops)
 
         queue = Volley.newRequestQueue(this.context)
@@ -147,7 +150,10 @@ class StopFragment : Fragment(), StopListener {
         stopAdapter = StopAdapter(stopList, this)
         rvStops.layoutManager = LinearLayoutManager(this.context)
         rvStops.adapter = stopAdapter
+
         filterStops(iedNameStop.text.toString())
+        shimmerStop.visibility = View.GONE
+        rvStops.visibility = View.VISIBLE
     }
 
 
