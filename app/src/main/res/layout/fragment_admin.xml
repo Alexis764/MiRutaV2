@@ -42,7 +42,7 @@
             app:layout_constraintVertical_bias="0.02"
             android:text="Rutas"
             android:textSize="25dp"
-            android:textColor="@color/black"
+            style="@style/text"
             android:textAlignment="center"
             android:fontFamily="@font/tiltneon"
             android:background="@drawable/border_transparent"/>
@@ -88,7 +88,7 @@
             app:layout_constraintVertical_bias="0.01"
             android:text="Paradas"
             android:textSize="25dp"
-            android:textColor="@color/black"
+            style="@style/text"
             android:textAlignment="center"
             android:fontFamily="@font/tiltneon"
             android:background="@drawable/border_transparent"/>
@@ -135,7 +135,7 @@
             app:layout_constraintVertical_bias="0.01"
             android:text="Usuario"
             android:textSize="25dp"
-            android:textColor="@color/black"
+            style="@style/text"
             android:textAlignment="center"
             android:fontFamily="@font/tiltneon"
             android:background="@drawable/border_transparent"
@@ -183,7 +183,7 @@
             app:layout_constraintVertical_bias="0.01"
             android:text="Bus"
             android:textSize="25dp"
-            android:textColor="@color/black"
+            style="@style/text"
             android:textAlignment="center"
             android:fontFamily="@font/tiltneon"
             android:background="@drawable/border_transparent"/>
@@ -210,6 +210,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnAddBus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Lista"
+            android:theme="@style/Theme.MiRutaV2.botones"
+            android:drawableTop="@drawable/ic_list"
+            android:background="@drawable/btn_admin"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/titleDriver"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btnListBus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            android:text="Conductor"
+            android:textSize="25dp"
+            style="@style/text"
+            android:textAlignment="center"
+            android:fontFamily="@font/tiltneon"
+            android:background="@drawable/border_transparent"/>
+
+
+        <Button
+            android:id="@+id/btnListDriver"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleDriver"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.01"
             android:text="Lista"

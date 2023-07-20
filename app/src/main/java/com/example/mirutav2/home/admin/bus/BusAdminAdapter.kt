@@ -22,9 +22,6 @@ class BusAdminAdapter (
     override fun onBindViewHolder(holder: BusAdminViewHolder, position: Int) {
         holder.render(busList[position])
 
-        holder.btnitemUpdate.setOnClickListener {
-            busadminlistener.onBtnUpdateClicked(busList[position])
-        }
 
         holder.btnitemDelete.setOnClickListener {
             busadminlistener.onBtnDeleteClicked(busList[position])

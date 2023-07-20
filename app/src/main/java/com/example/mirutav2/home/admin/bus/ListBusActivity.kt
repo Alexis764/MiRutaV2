@@ -59,13 +59,11 @@ class ListBusActivity : AppCompatActivity(), BusAdminListener {
         val placaBus = jsonBus.getString("placaBus")
         val longitudBus = jsonBus.getDouble("longitudBus")
         val latitudBus = jsonBus.getDouble("latitudBus")
-        /*val identificacionUsu = jsonBus.getLong("identificacionUsu")*/
 
         return BusModel(
             placaBus,
             longitudBus,
-            latitudBus,
-            /*identificacionUsu*/
+            latitudBus
         )
     }
 
@@ -98,10 +96,6 @@ class ListBusActivity : AppCompatActivity(), BusAdminListener {
         busAdapter = BusAdminAdapter(busList,this)
         rvlistBus.layoutManager = LinearLayoutManager(this)
         rvlistBus.adapter = busAdapter
-    }
-
-    override fun onBtnUpdateClicked(busModel: BusModel) {
-
     }
 
     override fun onBtnDeleteClicked(busModel: BusModel) {

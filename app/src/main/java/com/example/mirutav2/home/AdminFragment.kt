@@ -10,6 +10,7 @@ import android.widget.Button
 import com.example.mirutav2.R
 import com.example.mirutav2.home.admin.bus.AddBusActivity
 import com.example.mirutav2.home.admin.bus.ListBusActivity
+import com.example.mirutav2.home.admin.driver.ListDriverActivity
 import com.example.mirutav2.home.admin.route.AddRouteActivity
 import com.example.mirutav2.home.admin.route.ListRouteActivity
 import com.example.mirutav2.home.admin.stop.AddStopActivity
@@ -53,6 +54,9 @@ class AdminFragment : Fragment() {
     private lateinit var btnAddBus: Button
     private lateinit var btnListBus : Button
 
+        //Driver
+    private lateinit var btnListDriver : Button
+
 
 
     override fun onCreateView(
@@ -89,6 +93,9 @@ class AdminFragment : Fragment() {
         //Botones Bus
         btnAddBus = rootView.findViewById(R.id.btnAddBus)
         btnListBus = rootView.findViewById(R.id.btnListBus)
+
+        //Botones Driver
+        btnListDriver = rootView.findViewById(R.id.btnListDriver)
 
 
     }
@@ -137,6 +144,12 @@ class AdminFragment : Fragment() {
 
         btnListBus.setOnClickListener {
             val intent = Intent(this.context, ListBusActivity::class.java)
+            startActivity(intent)
+        }
+
+            //Botones Driver
+        btnListDriver.setOnClickListener {
+            val intent = Intent(this.context, ListDriverActivity::class.java)
             startActivity(intent)
         }
 
