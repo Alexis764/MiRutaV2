@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
             android:theme="@style/styleSubtitle"
             tools:text="@string/welcome">
         </TextView>
@@ -56,7 +55,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginVertical="5dp"
-            android:textColor="@color/black"
             tools:text="@string/email_user"
             android:theme="@style/text">
         </TextView>
@@ -78,6 +76,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_dark_mode"
+                style="@style/icons"
                 android:contentDescription="@string/content_img_dark_mode">
             </ImageView>
 
@@ -91,7 +90,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
                     android:text="@string/dark_mode"
                     android:theme="@style/text">
                 </TextView>
@@ -99,9 +97,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_description"
                     android:text="@string/dark_mode_description"
-                    android:theme="@style/text">
+                    android:theme="@style/styleTextGray">
                 </TextView>
 
             </LinearLayout>
