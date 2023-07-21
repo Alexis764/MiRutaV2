@@ -334,10 +334,10 @@ class MapActivityAdmin : AppCompatActivity(), OnMapReadyCallback {
         val parameters = JSONObject()
 
         try {
-            parameters.put("nombrePar", iedAddressStopAddIn)
-            parameters.put("direccionPar", iedNameStopAddIn)
-            parameters.put("longitudPar", iedLatStopAddIn)
-            parameters.put("latitudPar", iedLngStopAddIn)
+            parameters.put("direccionPar", iedAddressStopAddIn)
+            parameters.put("nombrePar", iedNameStopAddIn)
+            parameters.put("longitudPar", iedLngStopAddIn)
+            parameters.put("latitudPar", iedLatStopAddIn)
             parameters.put("imgPar", iedLinkImageStopAddIn)
 
         } catch (e: JSONException){
