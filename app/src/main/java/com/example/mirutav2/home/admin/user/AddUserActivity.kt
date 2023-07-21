@@ -88,13 +88,7 @@ class AddUserActivity : AppCompatActivity() {
             val selectedRole = AddDataRol.selectedItem.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && photo.isNotEmpty() && selectedRole.isNotEmpty()) {
-                if (selectedRole == "Conductor") {
-                    // Mostrar el cuadro de diálogo para solicitar el documento
-                    showDocumentDialog()
-                } else {
-                    // Si no es "Conductor", guardar el usuario sin solicitar documento
-                    saveUser() // Pasa null como ID del usuario ya que aún no se ha creado
-                }
+                saveUser()
             } else {
                 Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             }
@@ -104,21 +98,21 @@ class AddUserActivity : AppCompatActivity() {
     private fun showDocumentDialog() {
         val documentDialog = Dialog(this)
         documentDialog.setContentView(R.layout.dialog_request_document)
+        documentDialog.show()
+
         val btnAcceptDocument = documentDialog.findViewById<Button>(R.id.btnAcceptDocument)
         val editTextDocument = documentDialog.findViewById<EditText>(R.id.editTextDocument)
 
         btnAcceptDocument.setOnClickListener {
             val document = editTextDocument.text.toString().trim()
             if (document.isNotEmpty()) {
-                documentDialog.dismiss()
                 // Guardar el usuario con el documento ingresado
                 saveUser() // No pasamos el documento aquí
+                documentDialog.hide()
             } else {
                 Toast.makeText(this, "Por favor, ingrese el documento", Toast.LENGTH_SHORT).show()
             }
         }
-
-        documentDialog.show()
     }
 
     /*// Guardar Usuario
@@ -180,21 +174,21 @@ class AddUserActivity : AppCompatActivity() {
     private fun showDocumentDialogForDriver(userID: Long) {
         val documentDialog = Dialog(this)
         documentDialog.setContentView(R.layout.dialog_request_document)
+        documentDialog.show()
+
         val btnAcceptDocument = documentDialog.findViewById<Button>(R.id.btnAcceptDocument)
         val editTextDocument = documentDialog.findViewById<EditText>(R.id.editTextDocument)
 
         btnAcceptDocument.setOnClickListener {
             val document = editTextDocument.text.toString().trim()
             if (document.isNotEmpty()) {
-                documentDialog.dismiss()
                 // Guardar el conductor con el documento y la ID del usuario
                 saveDriver(userID, document) // Se pasa el valor del documento como parámetro aquí
+                documentDialog.hide()
             } else {
                 Toast.makeText(this, "Por favor, ingrese el documento", Toast.LENGTH_SHORT).show()
             }
         }
-
-        documentDialog.show()
     }
 
     private fun saveDriver(userID: Long, document: String) {
